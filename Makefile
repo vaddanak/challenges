@@ -15,4 +15,6 @@ run:
 	@valgrind --leak-check=full ./a.out
 
 vad:
-	@gedit Makefile .git/config .git/info/exclude &
+	@gedit Makefile .git/config .git/info/exclude \
+		string.c \
+		&#

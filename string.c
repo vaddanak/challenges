@@ -3,7 +3,7 @@
 #include <cstdlib>
 
 
-const char * something() {
+const char * something(const char * msg = "None") {
 
 	return "hello folks";
 }
