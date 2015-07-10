@@ -9,12 +9,12 @@ edit:
 		&#
 
 file:
-	@g++ -Wall string.c
+	@g++ -Wall -o ./src/a.out ./src/string_operations.c
 
 run:
-	@valgrind --leak-check=full ./a.out
+	@valgrind --leak-check=full ./src/a.out
 
 vad:
 	@gedit Makefile .git/config .git/info/exclude \
-		string.c \
+		string_operations.c \
 		&#
