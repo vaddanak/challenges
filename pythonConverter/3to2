@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+import sys
+
+from lib3to2.main import main
+
+sys.exit(main("lib3to2.fixes"))
+
+
+'''
+We are assuming 3to2-1.1.1.zip file has been extracted in current directory,
+ie file 3to2 is in same directory as the target Python 3 file you want to 
+convert.
+Use the follow syntax to convert Python 3 to Python 2:
+
+./3to2 -w palindrome.py
+
+Test converted, new Python 2 file like:
+
+python2 palindrome.py
+
+The original file will be stored as palindrome.py.bak and converted file
+will be palindrome.py
+
+Run the original Python 3 file using either of 2 methods:
+python3 palindrome.py.bak
+./palindrome.py.bak
+'''
