@@ -1,0 +1,16 @@
+Write program that tests whether string is a palindrome or not. 
+
+Print 1 or 0.
+
+
+INPUT SAMPLE 1 
+amanaplanacanalpanama
+
+OUTPUT SAMPLE 1
+1
+
+INPUT SAMPLE 2
+asantadoglivedasadevilgodatnasa
+
+OUTPUT SAMPLE 2
+1
