@@ -2,21 +2,27 @@
 ### HINTS
 # "cat .git/refs/heads/master" shows head of master branch, ie a commit id
 edit:
-	@sudo gedit \
+	@sudo gedit --new-window \
 		.git/config .git/info/exclude \
 		Makefile \
 		string.c \
 		&#
 
 vad:
-	@gedit --new-window Makefile \
+	@gedit --new-window \
+		Makefile \
 		./pythonConverter/3to2 \
 		.git/config .git/info/exclude \
 		string_operations.c \
+		./palindrome/problem_description.txt \
+		./palindrome/palindrome.py \
+		./palindrome/palindrome3.py \
 		&#
-# convert python3 to python2		
+		
+# convert python3 to python2; original python3 file stored as pyfile.py.bak
+# and python2 converted file stored as pyfile.py per the -w flag		
 convert:
-	@./pythonConverter/3to2	-w ./palindrome/palindrome.py	
+	@./pythonConverter/3to2	-w ./palindrome/palindrome.py
 		
 		
 file:
