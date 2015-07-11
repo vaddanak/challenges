@@ -14,7 +14,7 @@ vad:
 		.git/config .git/info/exclude \
 		string_operations.c \
 		&#
-		
+# convert python3 to python2		
 convert:
 	@./pythonConverter/3to2	-w ./palindrome/palindrome.py	
 		
