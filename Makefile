@@ -11,7 +11,7 @@ edit:
 vad:
 	@gedit --new-window \
 		Makefile \
-		./pythonConverter/3to2 \
+		./resources/3to2 \
 		.git/config .git/info/exclude \
 		string_operations.c \
 		./palindrome/problem_description.txt \
@@ -22,7 +22,7 @@ vad:
 # convert python3 to python2; original python3 file stored as pyfile.py.bak
 # and python2 converted file stored as pyfile.py per the -w flag		
 convert:
-	@./pythonConverter/3to2	-w ./palindrome/palindrome.py
+	@./resources/3to2	-w ./palindrome/palindrome.py
 		
 		
 file:
