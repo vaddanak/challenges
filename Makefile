@@ -34,10 +34,12 @@ convert:#convert python3 to python2
 		
 ### 		
 cc:# compile c++ source files
-	@g++ -Wall -o ./src/a.out ./src/string_operations.c
+	#@g++ -Wall -o ./src/a.out ./src/string_operations.c
+	@g++ -Wall -o ./my_codes/palindrome/a.out ./my_codes/palindrome/palindrome.cpp
 
 rc:# run c++ executable
-	@valgrind --leak-check=full ./src/a.out	
+	#@valgrind --leak-check=full ./src/a.out
+	@valgrind --leak-check=full ./my_codes/palindrome/a.out	
 
 #example:  @${javabin}/javac ./my_codes/palindrome/palindrome.java
 #java doc:  google-chrome ./resources/javadir/jdk1.8.0_45/docs/index.html &
