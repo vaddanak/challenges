@@ -24,8 +24,7 @@ vad:
 		./my_codes/right_triangle/*.py \
 		./my_codes/right_triangle/*.cpp ./my_codes/right_triangle/*.h \
 		./my_codes/right_triangle/*.java \
-		&
-		#
+		& #
 		
 # convert python3 to python2; original python3 file stored as pyfile.py.bak
 # and python2 converted file stored as pyfile.py per the -w flag		
