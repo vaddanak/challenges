@@ -1,4 +1,7 @@
 
+### VARIABLES
+javabin = ./resources/javadir/jdk1.8.0_45/bin
+
 ### HINTS
 # "cat .git/refs/heads/master" shows head of master branch, ie a commit id
 edit:
@@ -14,19 +17,40 @@ vad:
 		.git/config .git/info/exclude \
 		./src/string_operations.c \
 		./my_codes/palindrome/problem_description.txt \
-		./my_codes/palindrome/palindrome.py \
-		./my_codes/palindrome/palindrome3.py \
-		&#
+		./my_codes/palindrome/*.py \
+		./my_codes/palindrome/*.java \
+		./my_codes/palindrome/*.cpp ./my_codes/palindrome/*.h \
+		./my_codes/right_triangle/problem_description.txt \
+		./my_codes/right_triangle/*.py \
+		./my_codes/right_triangle/*.cpp ./my_codes/right_triangle/*.h \
+		./my_codes/right_triangle/*.java \
+		&
+		#
 		
 # convert python3 to python2; original python3 file stored as pyfile.py.bak
 # and python2 converted file stored as pyfile.py per the -w flag		
-convert:
+convert:#convert python3 to python2
 	@./resources/3to2	-w ./my_codes/palindrome/palindrome.py
 		
-		
-file:
+### 		
+cc:# compile c++ source files
 	@g++ -Wall -o ./src/a.out ./src/string_operations.c
 
-run:
-	@valgrind --leak-check=full ./src/a.out
+rc:# run c++ executable
+	@valgrind --leak-check=full ./src/a.out	
+
+#example:  @${javabin}/javac ./my_codes/palindrome/palindrome.java
+#java doc:  google-chrome ./resources/javadir/jdk1.8.0_45/docs/index.html &
+cjava:#compile java
+	@${javabin}/javac -help
+	@${javabin}/javac ./my_codes/palindrome/palindrome.java
+
+#example:  @${javabin}/java -classpath ./my_codes/palindrome: palindrome
+rjava:#run java	
+	@${javabin}/java -help
+	@${javabin}/java -classpath ./my_codes/palindrome: palindrome
+	
+
+	
+	
 

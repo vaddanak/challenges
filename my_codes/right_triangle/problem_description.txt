@@ -1,0 +1,22 @@
+Given any two edge lengths of a right triangle, find the missing third.
+
+Where:
+
+X = length of side 1 
+Y = length of side 2 
+Z = length of hypotenuse 
+_ = blank variable
+
+Your output should be rounded to the nearest three decimals places
+
+INPUT SAMPLE 1
+3 _ 5
+
+OUTPUT SAMPLE 1
+4.000
+
+INPUT SAMPLE 2
+7 _ 10
+
+OUTPUT SAMPLE 2
+7.141
