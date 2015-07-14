@@ -30,6 +30,10 @@ vad:
 # and python2 converted file stored as pyfile.py per the -w flag		
 convert:#convert python3 to python2
 	@./resources/3to2	-w ./my_codes/palindrome/palindrome.py
+	
+py:
+	@python ./my_codes/right_triangle/right_triangle.py
+	
 		
 ### 		
 cc:# compile c++ source files
@@ -44,12 +48,14 @@ rc:# run c++ executable
 #java doc:  google-chrome ./resources/javadir/jdk1.8.0_45/docs/index.html &
 cjava:#compile java
 	@${javabin}/javac -help
-	@${javabin}/javac ./my_codes/palindrome/palindrome.java
+	#@${javabin}/javac ./my_codes/palindrome/palindrome.java
+	@${javabin}/javac ./my_codes/right_triangle/right_triangle.java
 
 #example:  @${javabin}/java -classpath ./my_codes/palindrome: palindrome
 rjava:#run java	
 	@${javabin}/java -help
-	@${javabin}/java -classpath ./my_codes/palindrome: palindrome
+	#@${javabin}/java -classpath ./my_codes/palindrome: palindrome
+	@${javabin}/java -classpath ./my_codes/right_triangle: right_triangle
 	
 
 	
