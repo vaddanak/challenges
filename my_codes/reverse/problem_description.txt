@@ -1,0 +1,7 @@
+Given two positive integers, reverse them (58 = 85), add them together, then reverse the final answer.
+
+SAMPLE INPUT
+8827 387 
+
+SAMPLE OUTPUT
+1708

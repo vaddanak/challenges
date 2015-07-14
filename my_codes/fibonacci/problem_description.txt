@@ -1,0 +1,20 @@
+How many pairs of rabbits will there be in a year from today? This is the question that Leonardo of Pisa, also known as Leonardo Fibonacci, asked himself early in the 13th century. In this exercise, you will delve into Fibonacci’s search for mathematical truth.
+
+Remember that the Fibonacci sequence starts with {0, 1} and is given by: F(n) = F(n-1) + F(n-2)
+
+Given a number N, print out the first N numbers in the Fibonacci sequence. 
+
+INPUT
+N
+
+OUTPUT
+X1 X2 X3.........XN
+
+Where:
+1 ≤ N ≤ 50
+
+SAMPLE INPUT
+4
+
+SAMPLE OUTPUT
+0 1 1 2

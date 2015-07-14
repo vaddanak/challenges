@@ -1,0 +1,24 @@
+Oz has a bag filled with many pebbles of different color groups. If C is defined as the number of all the different colors in the bag, help him calculate the probability of picking a pebble of a certain color, A(color), during his first attempt.
+
+INPUT
+X1 X2 X3 ...... Xc
+A(color)
+
+OUTPUT
+O(probability)
+
+Where:
+
+C = maximum list index of total color groups
+X [ ] = list of number of pebbles in each color group
+A(color) = index indicating the chosen color group. 1≤ A ≤ C
+O(probability) = probability of picking a pebble in the A(color) group. 0 < P ≤ 1
+
+Round (floor) your answers to the nearest two decimal places.
+
+SAMPLE INPUT
+5 6 20 5
+3
+
+SAMPLE OUTPUT
+0.55

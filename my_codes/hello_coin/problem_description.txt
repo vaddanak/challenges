@@ -1,0 +1,25 @@
+A coin is tossed a finite number of times. Given the total number of flips, F, calculate the probability of getting at most H heads. Assume that the coin is fair (probability of heads and tails is equal).
+
+INPUT FORMAT
+The first line of the input will be, N, the number of test cases, where 1 ≤ N ≤ 10
+The subsequent N lines will be in the form:
+F H
+
+Where:
+F = Total number of flips. 1 ≤ F ≤ 100
+H = Upper bound on number of heads. 0 ≤ H ≤ F
+
+OUTPUT FORMAT
+The output must be the probability of getting at most H number of heads. 
+All probabilities should be rounded to the nearest four decimal places.
+
+SAMPLE INPUT
+3
+10 2
+12 7
+15 15
+
+SAMPLE OUTPUT
+0.0547
+0.8062
+1.0000

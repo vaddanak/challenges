@@ -1,0 +1,23 @@
+Two Computer Engineers who are stranded on an island. They decide to split up to evaluate their resources and use smoke signals to communicate while on different sides of the island. Fortunately for them they know ASCII and are able to encode their binary sequence of smoke signals into ASCII. 
+
+Complete a program which converts a binary sequence to ASCII.
+
+NOTE: No ASCII table will be provided
+
+INPUT FORMAT
+Input will be in the form:
+B
+
+Where:
+B = Binary sequence 
+
+OUTPUT FORMAT
+Output should be the string in ASCII format
+
+Sample 1:
+
+SAMPLE INPUT
+10010001101001
+
+SAMPLE OUTPUT 
+Hi

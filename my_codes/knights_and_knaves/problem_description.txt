@@ -1,0 +1,35 @@
+You are on the island of Knights and Knaves. During your journey, you have come to a fork in the road and are faced with two individuals, one at each path. Each individual is coercing you to take their path. One individual is telling the truth and the other is telling a lie.
+
+Mike is at one fork in the road and Victor is at the other. Depending on what each of the individuals say, you should choose a path to follow. If you follow the path of the liar you will be led on a journey that leads to your death. 
+
+NOTE: Various inputs are paradoxes and will not be tested
+
+INPUT FORMAT
+Input will be in the form:
+m:m1v0
+v:m0v0
+
+Where:
+m = Mike
+v = Victor
+: (colon) indicates what each individual is saying
+? = indicates no response 
+0= Knave (Liar) 
+1= Knight (Truth teller)
+
+“Mike says that he is a knight and that Victor is a knave. Victor says that they are both knaves.”
+
+OUTPUT FORMAT
+You must respond with either “m,” “v,” or “u” denoting the person who is telling the truth.
+
+Where:
+m = mike is telling the truth
+v = victor is telling the truth
+u = impossible to know who is telling the truth
+
+SAMPLE INPUT
+m:m1v0
+v:m0v0
+
+SAMPLE OUTPUT
+m

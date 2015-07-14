@@ -1,0 +1,3 @@
+Use this problem to test that your problem compiles and builds on Mooshak.
+
+Simply make your program print "Hello World" Ensure you include a newline character at the end of the statement.

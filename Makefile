@@ -24,6 +24,14 @@ vad:
 		./my_codes/right_triangle/*.py \
 		./my_codes/right_triangle/*.cpp ./my_codes/right_triangle/*.h \
 		./my_codes/right_triangle/*.java \
+		./my_codes/hailo/*.txt \
+		./my_codes/pebbles/*.txt \
+		./my_codes/fibonacci/*.txt \
+		./my_codes/reverse/*.txt \
+		./my_codes/smoke_signals/*.txt \
+		./my_codes/hello_coin/*.txt \
+		./my_codes/knights_and_knaves/*.txt \
+		./my_codes/hello_world/*.txt \
 		& #
 		
 # convert python3 to python2; original python3 file stored as pyfile.py.bak
