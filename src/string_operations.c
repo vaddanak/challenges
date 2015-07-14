@@ -17,6 +17,11 @@ size_t stash(const char * const p) {
 	return 0;
 }
 
+const char * my_strcat(char * dest, const char * source) {
+
+	return "None";
+}
+
 
 int main(int argc, char** argv) {
 

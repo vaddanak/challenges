@@ -1,0 +1,114 @@
+From 1904d9316bd3757c08362882192b5107597a76c3 Mon Sep 17 00:00:00 2001
+From: some gituser <gituser@unknown>
+Date: Tue, 14 Jul 2015 16:13:57 -0400
+Subject: [PATCH] Add my_strcat function
+
+---
+ src/Makefile            |   0
+ src/string_operations   | Bin 0 -> 9348 bytes
+ src/string_operations.c |   5 +++++
+ 3 files changed, 5 insertions(+)
+ mode change 100644 => 100755 src/Makefile
+ create mode 100755 src/string_operations
+ mode change 100644 => 100755 src/string_operations.c
+
+diff --git a/src/Makefile b/src/Makefile
+old mode 100644
+new mode 100755
+diff --git a/src/string_operations b/src/string_operations
+new file mode 100755
+index 0000000000000000000000000000000000000000..2544fb4ad794728a800699e7391c0d307e8825c9
+GIT binary patch
+literal 9348
+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
+HT~hoP638C{
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/string_operations.c b/src/string_operations.c
+old mode 100644
+new mode 100755
+index 72d5e3c..f986307
+--- a/src/string_operations.c
++++ b/src/string_operations.c
+@@ -17,6 +17,11 @@ size_t stash(const char * const p) {
+ 	return 0;
+ }
+ 
++const char * my_strcat(char * dest, const char * source) {
++
++	return "None";
++}
++
+ 
+ int main(int argc, char** argv) {
+ 
+-- 
+1.9.1
+
