@@ -35,14 +35,17 @@ py:
 	@python ./my_codes/right_triangle/right_triangle.py
 	
 		
-### 		
+### 	
+id = right_triangle
 cc:# compile c++ source files
 	#@g++ -Wall -o ./src/a.out ./src/string_operations.c
-	@g++ -Wall -o ./my_codes/palindrome/a.out ./my_codes/palindrome/palindrome.cpp
+	#@g++ -Wall -o ./my_codes/palindrome/a.out ./my_codes/palindrome/palindrome.cpp
+	@g++ -Wall -o ./my_codes/${id}/a.out ./my_codes/${id}/${id}.cpp
 
 rc:# run c++ executable
 	#@valgrind --leak-check=full ./src/a.out
-	@valgrind --leak-check=full ./my_codes/palindrome/a.out	
+	#@valgrind --leak-check=full ./my_codes/palindrome/a.out	
+	@valgrind --leak-check=full ./my_codes/${id}/a.out
 
 #example:  @${javabin}/javac ./my_codes/palindrome/palindrome.java
 #java doc:  google-chrome ./resources/javadir/jdk1.8.0_45/docs/index.html &
