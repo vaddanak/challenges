@@ -40,7 +40,7 @@ convert:#convert python3 to python2
 	@./resources/3to2	-w ./my_codes/palindrome/palindrome.py
 	
 py:
-	@python ./my_codes/right_triangle/right_triangle.py
+	@python ./my_codes/${id}/right_triangle.py
 	
 		
 ### 	
