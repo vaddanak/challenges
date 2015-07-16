@@ -1,0 +1,106 @@
+#!/usr/bin/make -f
+
+DEB_PYTHON_INSTALL_ARGS_ALL = --install-layout=deb
+
+# Check whether we have Python v3 support
+ifneq ($(shell which py3versions 2>/dev/null),)
+  WITHPYTHON="python2,python3"
+  PYTHON3_SUPPORTED=$(shell py3versions -sv)
+else
+  WITHPYTHON="python2"
+  PYTHON3_SUPPORTED=
+endif
+
+# We do not support Python v2.5
+PYTHON2_SUPPORTED=$(shell pyversions -sv | sed -e "s/\s*2\.5\s*//g")
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	# The mysql/__init__.py modules are removed and recreated in the
+	# postinst script.
+
+	# Python v2
+	set -xe; for pyver in $(PYTHON2_SUPPORTED); do \
+		python$$pyver setup.py \
+			build --build-base=build --build-purelib=build/python2 \
+			    --build-platlib=build/python2; \
+		rm build/python2/mysql/__init__.py; \
+	done
+
+	# Python v2 C Extension
+	if [ -n "$(MYSQL_CAPI)" ]; then \
+        set -xe; for pyver in $(PYTHON2_SUPPORTED); do \
+            python$$pyver setup.py \
+                build_ext_static --build-lib=build/python2_cext \
+                    --with-mysql-capi=$(MYSQL_CAPI); \
+        done \
+	fi
+
+	# Python v3
+	set -xe; for pyver in $(PYTHON3_SUPPORTED); do \
+		python$$pyver setup.py \
+			build --build-base=build --build-purelib=build/python3 \
+			    --build-platlib=build/python3; \
+		rm build/python3/mysql/__init__.py; \
+	done
+
+	# Python v3 C Extension
+	if [ -n "$(MYSQL_CAPI)" ]; then \
+        set -xe; for pyver in $(PYTHON3_SUPPORTED); do \
+            python$$pyver setup.py \
+                build_ext_static --build-lib=build/python3_cext \
+                    --with-mysql-capi=$(MYSQL_CAPI); \
+        done \
+    fi
+
+override_dh_auto_install:
+	# The mysql/__init__.py modules are removed and recreated in the
+	# postinst script.
+
+	# Python v2
+	set -xe; \
+	DESTDIR=$(CURDIR)/debian/mysql-connector-python-commercial; \
+	for pyver in $(PYTHON2_SUPPORTED); do \
+		python$$pyver setup.py \
+			install_lib --build-dir=build/python2 \
+			install --skip-build --install-layout=deb \
+			--root $$DESTDIR; \
+	done
+
+	# Python v2 C Extension
+	set -xe; \
+	DESTDIR=$(CURDIR)/debian/mysql-connector-python-cext-commercial; \
+	for pyver in $(PYTHON2_SUPPORTED); do \
+		python$$pyver setup.py \
+			install_lib --build-dir=build/python2_cext \
+			install --skip-build --install-layout=deb \
+			--root $$DESTDIR; \
+		find $$DESTDIR -name 'mysql_connector_*.egg-info' -exec rm {} \;; \
+	done
+
+	# Python v3
+	set -xe; \
+	DESTDIR=$(CURDIR)/debian/mysql-connector-python-commercial-py3; \
+	for pyver in $(PYTHON3_SUPPORTED); do \
+		python$$pyver setup.py \
+			install_lib --build-dir=build/python3 \
+			install --skip-build --install-layout=deb \
+			--root $$DESTDIR; \
+	done
+
+	# Python v3 C Extension
+	set -xe; \
+	DESTDIR=$(CURDIR)/debian/mysql-connector-python-cext-commercial-py3; \
+	for pyver in $(PYTHON3_SUPPORTED); do \
+		python$$pyver setup.py \
+			install_lib --build-dir=build/python3_cext \
+			install --skip-build --install-layout=deb \
+			--root $$DESTDIR; \
+		find $$DESTDIR -name 'mysql_connector_*.egg-info' -exec rm {} \;; \
+	done
+
+override_dh_pysupport:
+	# Skipped. We need to keep the .pyc files.
+

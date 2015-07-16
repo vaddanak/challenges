@@ -1,0 +1,5 @@
+
+
+class BenchmarkError(Exception):
+    pass
+

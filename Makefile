@@ -41,7 +41,7 @@ vad:
 convert:#convert python3 to python2
 	@./resources/3to2	-w ./my_codes/palindrome/palindrome.py
 	
-py:
+py:# run python program
 	@python ./my_codes/${id}/right_triangle.py
 	
 		
@@ -70,7 +70,37 @@ rjava:#run java
 	#@${javabin}/java -classpath ./my_codes/palindrome: palindrome
 	@${javabin}/java -classpath ./my_codes/right_triangle: right_triangle
 	
-
+### extract source code files on Gateway Laptop
+# Cloudstack contains 5830 java files	
+countJavaFiles = $$(find ./resources/sourceCode/apache-cloudstack-4.5.1-src \
+	-type f | grep --color -E '.*(.{1}java)$$' | wc -l)
+javaCloudFiles = $$(find ./resources/sourceCode/apache-cloudstack-4.5.1-src \
+	-type f | grep --color -E '.*(.{1}java)$$' | sed '1,10!d')
+	#read?
+# Cloudstack contains 341 python files	
+countPythonFiles = $$(find ./resources/sourceCode/apache-cloudstack-4.5.1-src \
+	-type f | grep --color -E '.*(.{1}py)$$' | wc -l)
+pythonCloudFiles = $$(find ./resources/sourceCode/apache-cloudstack-4.5.1-src \
+	-type f | grep --color -E '.*(.{1}py)$$' | sed -n '1,10p')
+	#read?
+# MySQL Connector contains 322 java files
+javaMysqlConnFiles = $$(find \
+	./resources/sourceCode/mysql-connector-java-5.1.35 \
+	-type f | grep --color -E '.*(.{1}java)$$' | sed '1,50!d')
+	#read?
+# MySQL Connector contains 107 python files
+pythonMysqlConnFiles = $$(find \
+	./resources/sourceCode/mysql-connector-python-2.0.4 \
+	-type f | grep --color -E '.*(.{1}py)$$' | sed -n '1,50p')
+	#read?
+# MySQL Connector contains 195 C++ files
+cppMysqlConnFiles = $$(find \
+	./resources/sourceCode/mysql-connector-c++-1.1.6 \
+	-type f | grep --color -E '.*(.cpp|.h|.c)$$' | sed '1,50!d')
+	#read?
+studycode:
+	#@echo ${countPythonFiles}	
+	@gedit --new-window ${cppMysqlConnFiles} &
 	
 	
 
