@@ -8,6 +8,8 @@ Test miscellaneous language attributes.
 from __future__ import print_function;
 import re;
 import os;
+import sys;
+import re;
 
 
 
@@ -31,5 +33,7 @@ print(re.sub(r'\D','',phone));
 #lenovo here
 ###=======
 print('======================================================================');
-print('xxx%.3sxxx %s' % (4.56,'xxA'));
+print(sys.version);
+print(re.search(r'2.{1}\d+.{1}\d+', sys.version).group());
+print(re.search(r'2(.{1})\d+?\1\d{0,2}.*', sys.version).group());
 ###>>>>>>> 93b40f9f0aa2166193be81ea48e741862b7ea442

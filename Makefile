@@ -22,9 +22,11 @@ vad:
 		./my_codes/palindrome/*.cpp ./my_codes/palindrome/*.h \
 		./my_codes/right_triangle/problem_description.txt \
 		./my_codes/right_triangle/*.py \
-		./my_codes/right_triangle/*.cpp ./my_codes/right_triangle/*.h \
 		./my_codes/right_triangle/*.java \
+		./my_codes/right_triangle/*.cpp ./my_codes/right_triangle/*.h \
 		./my_codes/hailo/*.txt \
+		./my_codes/hailo/*.py ./my_codes/hailo/*.java \
+		./my_codes/hailo/*.cpp ./my_codes/hailo/*.h \
 		./my_codes/pebbles/*.txt \
 		./my_codes/fibonacci/*.txt \
 		./my_codes/reverse/*.txt \
