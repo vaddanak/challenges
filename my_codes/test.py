@@ -7,6 +7,7 @@ Test miscellaneous language attributes.
 
 from __future__ import print_function;
 import re;
+import os;
 
 
 
@@ -25,5 +26,10 @@ if matchObject2 is not None:
 	
 print(re.sub(r'#.*','',phone));
 print(re.sub(r'\D','',phone));
+###<<<<<<< HEAD
 
 #lenovo here
+###=======
+print('======================================================================');
+print('xxx%.3sxxx %s' % (4.56,'xxA'));
+###>>>>>>> 93b40f9f0aa2166193be81ea48e741862b7ea442

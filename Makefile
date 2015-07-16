@@ -43,7 +43,7 @@ py:
 	@python ./my_codes/${id}/right_triangle.py
 	
 		
-### 	
+### VARIABLES	
 id = right_triangle
 cc:# compile c++ source files
 	#@g++ -Wall -o ./src/a.out ./src/string_operations.c
