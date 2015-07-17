@@ -23,6 +23,13 @@ const char * my_strcat(char * dest, const char * source) {
 }
 
 
+//using wchar_support branch head
+size_t w_strlen(const wchar_t *s) {
+	return 0;
+}
+
+
+
 int main(int argc, char** argv) {
 
 
