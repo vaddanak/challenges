@@ -23,7 +23,7 @@ const char * my_strcat(char * dest, const char * source) {
 }
 
 
-//using wchar_support branch head
+//visible only with wchar_support branch
 size_t w_strlen(const wchar_t *s) {
 	return 0;
 }
