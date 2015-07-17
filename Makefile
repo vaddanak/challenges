@@ -72,35 +72,63 @@ rjava:#run java
 	
 ### extract source code files on Gateway Laptop
 # Cloudstack contains 5830 java files	
-countJavaFiles = $$(find ./resources/sourceCode/apache-cloudstack-4.5.1-src \
+countJavaCloudFiles = $$(find ./resources/sourceCode/apache-cloudstack-4.5.1-src \
 	-type f | grep --color -E '.*(.{1}java)$$' | wc -l)
 javaCloudFiles = $$(find ./resources/sourceCode/apache-cloudstack-4.5.1-src \
-	-type f | grep --color -E '.*(.{1}java)$$' | sed '1,10!d')
+	-type f | grep --color -E '.*(.{1}java)$$' | sed '1,20!d')
 	#read?
 # Cloudstack contains 341 python files	
-countPythonFiles = $$(find ./resources/sourceCode/apache-cloudstack-4.5.1-src \
+countPythonCloudFiles = $$(find ./resources/sourceCode/apache-cloudstack-4.5.1-src \
 	-type f | grep --color -E '.*(.{1}py)$$' | wc -l)
 pythonCloudFiles = $$(find ./resources/sourceCode/apache-cloudstack-4.5.1-src \
-	-type f | grep --color -E '.*(.{1}py)$$' | sed -n '1,10p')
+	-type f | grep --color -E '.*(.{1}py)$$' | sed -n '1,20p')
 	#read?
 # MySQL Connector contains 322 java files
 javaMysqlConnFiles = $$(find \
 	./resources/sourceCode/mysql-connector-java-5.1.35 \
-	-type f | grep --color -E '.*(.{1}java)$$' | sed '1,50!d')
+	-type f | grep --color -E '.*(.{1}java)$$' | sed '1,20!d')
 	#read?
 # MySQL Connector contains 107 python files
 pythonMysqlConnFiles = $$(find \
 	./resources/sourceCode/mysql-connector-python-2.0.4 \
-	-type f | grep --color -E '.*(.{1}py)$$' | sed -n '1,50p')
+	-type f | grep --color -E '.*(.{1}py)$$' | sed -n '1,20p')
 	#read?
 # MySQL Connector contains 195 C++ files
 cppMysqlConnFiles = $$(find \
 	./resources/sourceCode/mysql-connector-c++-1.1.6 \
-	-type f | grep --color -E '.*(.cpp|.h|.c)$$' | sed '1,50!d')
+	-type f | grep --color -E '.*(.cpp|.h|.c)$$' | sed '1,20!d')
 	#read?
-studycode:
+studyjava:
 	#@echo ${countPythonFiles}	
-	@gedit --new-window ${cppMysqlConnFiles} &
+	@gedit --new-window ${javaCloudFiles} & #read? AddIpToVmNicTest.java 
+	@gedit --new-window ${javaMysqlConnFiles} & #read?
+studypython:
+	@gedit --new-window ${pythonCloudFiles} & #read?
+	@gedit --new-window ${pythonMysqlConnFiles} & #read?
+studycpp:
+	@gedit --new-window ${cppMysqlConnFiles} & #read?
 	
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
