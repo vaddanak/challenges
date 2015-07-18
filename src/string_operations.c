@@ -29,7 +29,9 @@ const char * my_strcat(char * dest, const char * source) {
 
 
 //visible only with wchar_support branch
+/* wide character strlen function */
 size_t my_wstrlen(const wchar_t *s) {
+
 	return 0;
 }
 
