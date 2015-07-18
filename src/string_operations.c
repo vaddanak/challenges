@@ -24,7 +24,8 @@ const char * my_strcat(char * dest, const char * source) {
 
 
 //visible only with wchar_support branch
-size_t w_strlen(const wchar_t *s) {
+/* wide character strlen function */
+size_t my_wc_strlen(const wchar_t *s) {
 	return 0;
 }
 
