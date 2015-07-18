@@ -24,7 +24,7 @@ const char * my_strcat(char * dest, const char * source) {
 
 
 //visible only with wchar_support branch
-size_t w_strlen(const wchar_t *s) {
+size_t my_wstrlen(const wchar_t *s) {
 	return 0;
 }
 
