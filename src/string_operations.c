@@ -1,6 +1,11 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <wchar.h>
+
+wchar_t *my_wstrchr(wchar_t *ws, wchar_t wc) {
+	return 0;
+}
 
 
 const char * something(const char * msg = "None") {
