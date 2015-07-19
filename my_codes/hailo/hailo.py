@@ -2,8 +2,10 @@
 
 '''
 Author: Vaddanak Seng
-File:
-Purpose:
+File: hailo.py
+Purpose: Sort odd numbers in increasing order and even number in decreasing
+	order.  Also, experimenting with implementation that will run on either
+	Python 2.7 or and Python 3.4 interpreter.
 '''
 
 from __future__ import print_function;

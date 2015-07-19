@@ -1,5 +1,27 @@
 /*
 Author: Vaddanak Seng
-File:
+File: hailo.h
 Purpose:
 */
+
+#ifndef _HAILO_H_
+#	define _HAILO_H_
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#endif // _HAILO_H_

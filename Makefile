@@ -42,33 +42,30 @@ convert:#convert python3 to python2
 	@./resources/3to2	-w ./my_codes/palindrome/palindrome.py
 	
 py:# run python program
-	@python ./my_codes/${id}/right_triangle.py
+	@python ./my_codes/${problemName}/${problemName}.py
 	
 		
 ### VARIABLES	
-id = right_triangle
+#problemName = palindrome
+#problemName = right_triangle
+problemName = hailo
 cc:# compile c++ source files
-	#@g++ -Wall -o ./src/a.out ./src/string_operations.c
-	#@g++ -Wall -o ./my_codes/palindrome/a.out ./my_codes/palindrome/palindrome.cpp
-	@g++ -Wall -o ./my_codes/${id}/a.out ./my_codes/${id}/${id}.cpp
+	@g++ -Wall -o ./my_codes/${problemName}/a.out \
+		./my_codes/${problemName}/${problemName}.cpp
 
 rc:# run c++ executable
-	#@valgrind --leak-check=full ./src/a.out
-	#@valgrind --leak-check=full ./my_codes/palindrome/a.out	
-	@valgrind --leak-check=full ./my_codes/${id}/a.out
+	@valgrind --leak-check=full ./my_codes/${problemName}/a.out
 
 #example:  @${javabin}/javac ./my_codes/palindrome/palindrome.java
 #java doc:  google-chrome ./resources/javadir/jdk1.8.0_45/docs/index.html &
 cjava:#compile java
 	@${javabin}/javac -help
-	#@${javabin}/javac ./my_codes/palindrome/palindrome.java
-	@${javabin}/javac ./my_codes/right_triangle/right_triangle.java
+	@${javabin}/javac ./my_codes/${problemName}/${problemName}.java
 
 #example:  @${javabin}/java -classpath ./my_codes/palindrome: palindrome
 rjava:#run java	
 	@${javabin}/java -help
-	#@${javabin}/java -classpath ./my_codes/palindrome: palindrome
-	@${javabin}/java -classpath ./my_codes/right_triangle: right_triangle
+	@${javabin}/java -classpath ./my_codes/${problemName}: ${problemName}
 	
 ### extract source code files on Gateway Laptop
 # Cloudstack contains 5830 java files	
