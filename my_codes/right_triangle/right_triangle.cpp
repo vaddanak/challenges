@@ -15,6 +15,12 @@ Purpose: Given any two edge lengths of a right triangle, find the missing third.
 
 //#include "right_triangle.h"
 
+template <class T>
+T add(T a, T b) {
+	return a + b;
+}
+
+
 #ifndef __RIGHT_TRIANGLE_H__
 enum LEGS { SIDE1 = 1, SIDE2 = 2, HYPOTENUSE = 4};
 
@@ -65,6 +71,7 @@ int main(int argc, char ** args) {
 
 	//std::cout <<result <<std::endl;
 	std::printf("%.3f", result); //it also rounds!
+	std::cout <<add<double>(1.1, 2.2) <<std::endl;
 
 	return 0;
 }
@@ -91,6 +98,7 @@ double calculateLegLength( double side1, double side2, double hypotenuse,
 		
 	return result;
 }							
+
 
 
 
