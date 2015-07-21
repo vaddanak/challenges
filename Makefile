@@ -35,16 +35,10 @@ vad:
 		./my_codes/knights_and_knaves/*.txt \
 		./my_codes/hello_world/*.txt \
 		& #
+
+
 		
-# convert python3 to python2; original python3 file stored as pyfile.py.bak
-# and python2 converted file stored as pyfile.py per the -w flag		
-convert:#convert python3 to python2
-	@./resources/3to2	-w ./my_codes/palindrome/palindrome.py
-	
-py:# run python program
-	@python ./my_codes/${problemName}/${problemName}.py
-	
-		
+
 ### VARIABLES	
 #problemName = palindrome
 #problemName = right_triangle
@@ -66,6 +60,17 @@ cjava:#compile java
 rjava:#run java	
 	@${javabin}/java -help
 	@${javabin}/java -classpath ./my_codes/${problemName}: ${problemName}
+
+# convert python3 to python2; original python3 file stored as pyfile.py.bak
+# and python2 converted file stored as pyfile.py per the -w flag		
+convert:#convert python3 to python2
+	@./resources/3to2	-w ./my_codes/palindrome/palindrome.py
+	
+py:# run python program
+	@python ./my_codes/${problemName}/${problemName}.py	
+			
+	
+	
 	
 ### extract source code files on Gateway Laptop
 # Cloudstack contains 5830 java files	
