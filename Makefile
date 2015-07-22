@@ -97,11 +97,11 @@ cppMysqlConnFiles = $$(find \
 	#read?
 studyjava:
 	#@echo ${countPythonFiles}	
-	@gedit --new-window ${javaCloudFiles} & #read? AddIpToVmNicTest.java 
-	@gedit --new-window ${javaMysqlConnFiles} & #read?
+	@gedit --new-window ${javaCloudFiles} & #read? AddNetworkServiceProviderCmdTest.java 
+	#@gedit --new-window ${javaMysqlConnFiles} & #read?
 studypython:
 	@gedit --new-window ${pythonCloudFiles} & #read?
-	@gedit --new-window ${pythonMysqlConnFiles} & #read?
+	#@gedit --new-window ${pythonMysqlConnFiles} & #read?
 studycpp:
 	@gedit --new-window ${cppMysqlConnFiles} & #read?
 	
