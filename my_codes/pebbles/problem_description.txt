@@ -22,3 +22,7 @@ SAMPLE INPUT
 
 SAMPLE OUTPUT
 0.55
+
+=================================================
+algorithm:
+
