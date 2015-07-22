@@ -28,6 +28,8 @@ vad:
 		./my_codes/hailo/*.py ./my_codes/hailo/*.java \
 		./my_codes/hailo/*.cpp ./my_codes/hailo/*.h \
 		./my_codes/pebbles/*.txt \
+		./my_codes/pebbles/*.py ./my_codes/pebbles/*.java \
+		./my_codes/pebbles/*.cpp ./my_codes/pebbles/*.h \
 		./my_codes/fibonacci/*.txt \
 		./my_codes/reverse/*.txt \
 		./my_codes/smoke_signals/*.txt \
@@ -42,7 +44,8 @@ vad:
 ### VARIABLES	
 #problemName = palindrome
 #problemName = right_triangle
-problemName = hailo
+#problemName = hailo
+problemName = pebbles
 cc:# compile c++ source files
 	@g++ -Wall -o ./my_codes/${problemName}/a.out \
 		./my_codes/${problemName}/${problemName}.cpp
