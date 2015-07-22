@@ -108,8 +108,8 @@ studyjava:
 	@gedit --new-window ${javaCloudFiles} & #read? AddNetworkServiceProviderCmdTest.java 
 	#@gedit --new-window ${javaMysqlConnFiles} & #read?
 studypython:
-	@gedit --new-window ${pythonCloudFiles} & #read?
-	#@gedit --new-window ${pythonMysqlConnFiles} & #read?
+	#@gedit --new-window ${pythonCloudFiles} & #read?
+	@gedit --new-window ${pythonMysqlConnFiles} & #read?
 studycpp:
 	@gedit --new-window ${cppMysqlConnFiles} & #read?
 	

@@ -13,6 +13,7 @@ import re;
 
 
 
+
 txt = "My houseis moving!";
 phone = "236-965-9652 # unknown phone number";
 
@@ -37,3 +38,36 @@ print(sys.version);
 print(re.search(r'2.{1}\d+.{1}\d+', sys.version).group());
 print(re.search(r'2(.{1})\d+?\1\d{0,2}.*', sys.version).group());
 ###>>>>>>> 93b40f9f0aa2166193be81ea48e741862b7ea442
+
+print('======================================================================');
+print(sys.version_info);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
