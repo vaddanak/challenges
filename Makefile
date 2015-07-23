@@ -5,7 +5,7 @@ javabin = ./resources/javadir/jdk1.8.0_45/bin
 ### HINTS
 # "cat .git/refs/heads/master" shows head of master branch, ie a commit id
 gituser:
-	@sudo gedit --new-window Makefile \
+	@gedit --new-window Makefile \
 		.git/config .git/info/exclude \
 		./src/string_operations.c \
 		&#
