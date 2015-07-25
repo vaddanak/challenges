@@ -110,6 +110,9 @@ studyjava:
 studypython:
 	#@gedit --new-window ${pythonCloudFiles} & #read?
 	@gedit --new-window ${pythonMysqlConnFiles} & #read?
+pymysql:	
+	@gedit --new-window $$(find ./resources/pymysql/ -type f \
+		| grep -Ev '\.pyc$$') & #read? ER.py
 studycpp:
 	@gedit --new-window ${cppMysqlConnFiles} & #read?
 	
