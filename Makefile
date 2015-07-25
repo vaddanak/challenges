@@ -78,7 +78,7 @@ py:# run python program
 	
 	
 	
-### extract source code files on Gateway Laptop
+### SOURCE CODE of external available files on Gateway Laptop
 # Cloudstack contains 5830 java files	
 countJavaCloudFiles = $$(find ./resources/sourceCode/apache-cloudstack-4.5.1-src \
 	-type f | grep --color -E '.*(.{1}java)$$' | wc -l)
@@ -113,10 +113,15 @@ studyjava:
 studypython:
 	#@gedit --new-window ${pythonCloudFiles} & #read?
 	@gedit --new-window ${pythonMysqlConnFiles} & #read?
-pymysql:	
+src_pymysql:#pymysql module source code, 70 total files (include .pyc files)
 	@gedit --new-window $$(find ./resources/pymysql/ -type f \
 		| grep -Ev '\.pyc$$') & #read? ER.py
-studycpp:
+src_git:#git source code, 2809 total files (including .txt files)
+	@gedit --new-window \
+		$$(find ./resources/git-master -type f | grep -Ev '\.txt$$' | \
+		sed -n '1,20p') \
+		& #read?
+studycpp:#C++ MySQL connector source code
 	@gedit --new-window ${cppMysqlConnFiles} & #read?
 	
 	
