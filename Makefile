@@ -8,34 +8,36 @@ gituser:
 	@gedit --new-window Makefile \
 		.git/config .git/info/exclude \
 		./src/string_operations.c \
-		&#
-
+		& #
+		
+mycodeDir = /home/vad/challenges/mycode
 vad:
 	@gedit --new-window \
 		Makefile \
 		./resources/3to2 \
 		.git/config .git/info/exclude \
 		./src/string_operations.c \
-		./my_codes/palindrome/problem_description.txt \
-		./my_codes/palindrome/*.py \
-		./my_codes/palindrome/*.java \
-		./my_codes/palindrome/*.cpp ./my_codes/palindrome/*.h \
-		./my_codes/right_triangle/problem_description.txt \
-		./my_codes/right_triangle/*.py \
-		./my_codes/right_triangle/*.java \
-		./my_codes/right_triangle/*.cpp ./my_codes/right_triangle/*.h \
-		./my_codes/hailo/*.txt \
-		./my_codes/hailo/*.py ./my_codes/hailo/*.java \
-		./my_codes/hailo/*.cpp ./my_codes/hailo/*.h \
-		./my_codes/pebbles/*.txt \
-		./my_codes/pebbles/*.py ./my_codes/pebbles/*.java \
-		./my_codes/pebbles/*.cpp ./my_codes/pebbles/*.h \
-		./my_codes/fibonacci/*.txt \
-		./my_codes/reverse/*.txt \
-		./my_codes/smoke_signals/*.txt \
-		./my_codes/hello_coin/*.txt \
-		./my_codes/knights_and_knaves/*.txt \
-		./my_codes/hello_world/*.txt \
+		${mycodeDir}/palindrome/problem_description.txt \
+		${mycodeDir}/palindrome/*.py \
+		${mycodeDir}/palindrome/*.java \
+		${mycodeDir}/palindrome/*.cpp ${mycodeDir}/palindrome/*.h \
+		${mycodeDir}/right_triangle/problem_description.txt \
+		${mycodeDir}/right_triangle/*.py \
+		${mycodeDir}/right_triangle/*.java \
+		${mycodeDir}/right_triangle/*.cpp ${mycodeDir}/right_triangle/*.h \
+		${mycodeDir}/hailo/*.txt \
+		${mycodeDir}/hailo/*.py ${mycodeDir}/hailo/*.java \
+		${mycodeDir}/hailo/*.cpp ${mycodeDir}/hailo/*.h \
+		${mycodeDir}/pebbles/*.txt \
+		${mycodeDir}/pebbles/*.py ${mycodeDir}/pebbles/*.java \
+		${mycodeDir}/pebbles/*.cpp ${mycodeDir}/pebbles/*.h \
+		$$(find ${mycodeDir}/fibonacci/ -type f | \
+			grep -E '\.txt$$|\.py$$|\.java$$|\.cpp$$|\.h$$') \
+		${mycodeDir}/reverse/*.txt \
+		${mycodeDir}/smoke_signals/*.txt \
+		${mycodeDir}/hello_coin/*.txt \
+		${mycodeDir}/knights_and_knaves/*.txt \
+		${mycodeDir}/hello_world/*.txt \
 		& #
 
 
@@ -45,32 +47,33 @@ vad:
 #problemName = palindrome
 #problemName = right_triangle
 #problemName = hailo
-problemName = pebbles
+#problemName = pebbles
+problemName = fibonacci
 cc:# compile c++ source files
-	@g++ -Wall -o ./my_codes/${problemName}/a.out \
-		./my_codes/${problemName}/${problemName}.cpp
+	@g++ -Wall -o ${mycodeDir}/${problemName}/a.out \
+		${mycodeDir}/${problemName}/${problemName}.cpp
 
 rc:# run c++ executable
-	@valgrind --leak-check=full ./my_codes/${problemName}/a.out
+	@valgrind --leak-check=full ${mycodeDir}/${problemName}/a.out
 
 #example:  @${javabin}/javac ./my_codes/palindrome/palindrome.java
 #java doc:  google-chrome ./resources/javadir/jdk1.8.0_45/docs/index.html &
 cjava:#compile java
 	@${javabin}/javac -help
-	@${javabin}/javac ./my_codes/${problemName}/${problemName}.java
+	@${javabin}/javac ${mycodeDir}/${problemName}/${problemName}.java
 
 #example:  @${javabin}/java -classpath ./my_codes/palindrome: palindrome
 rjava:#run java	
 	@${javabin}/java -help
-	@${javabin}/java -classpath ./my_codes/${problemName}: ${problemName}
+	@${javabin}/java -classpath ${mycodeDir}/${problemName}: ${problemName}
 
 # convert python3 to python2; original python3 file stored as pyfile.py.bak
 # and python2 converted file stored as pyfile.py per the -w flag		
 convert:#convert python3 to python2
-	@./resources/3to2	-w ./my_codes/palindrome/palindrome.py
+	@./resources/3to2	-w ${mycodeDir}/palindrome/palindrome.py
 	
 py:# run python program
-	@python ./my_codes/${problemName}/${problemName}.py	
+	@python ${mycodeDir}/${problemName}/${problemName}.py	
 			
 	
 	
