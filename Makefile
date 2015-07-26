@@ -33,7 +33,8 @@ vad:
 		${mycodeDir}/pebbles/*.cpp ${mycodeDir}/pebbles/*.h \
 		$$(find ${mycodeDir}/fibonacci/ -type f | \
 			grep -E '\.txt$$|\.py$$|\.java$$|\.cpp$$|\.h$$') \
-		${mycodeDir}/reverse/*.txt \
+		$$(find ${mycodeDir}/reverse/ -type f | \
+			grep -E '\.txt$$|\.py$$|\.java$$|\.cpp$$|\.h$$') \
 		${mycodeDir}/smoke_signals/*.txt \
 		${mycodeDir}/hello_coin/*.txt \
 		${mycodeDir}/knights_and_knaves/*.txt \
@@ -48,7 +49,8 @@ vad:
 #problemName = right_triangle
 #problemName = hailo
 #problemName = pebbles
-problemName = fibonacci
+#problemName = fibonacci
+problemName = reverse
 cc:# compile c++ source files
 	@g++ -Wall -o ${mycodeDir}/${problemName}/a.out \
 		${mycodeDir}/${problemName}/${problemName}.cpp
@@ -58,12 +60,12 @@ rc:# run c++ executable
 
 #example:  @${javabin}/javac ./my_codes/palindrome/palindrome.java
 #java doc:  google-chrome ./resources/javadir/jdk1.8.0_45/docs/index.html &
-cjava:#compile java
+cj:#compile java
 	@${javabin}/javac -help
 	@${javabin}/javac ${mycodeDir}/${problemName}/${problemName}.java
 
 #example:  @${javabin}/java -classpath ./my_codes/palindrome: palindrome
-rjava:#run java	
+rj:#run java	
 	@${javabin}/java -help
 	@${javabin}/java -classpath ${mycodeDir}/${problemName}: ${problemName}
 
