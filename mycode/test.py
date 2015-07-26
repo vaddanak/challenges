@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 '''
 Test miscellaneous language attributes.
@@ -81,12 +81,16 @@ def regex2():
 	pass;
 
 
-
+def socket():
+	print(sys.executable); # /usr/bin/python --> /usr/bin/python2.7
+	pass;
+	
+	
 #print('======================================================================');
 
 #test = test_pymysql;
 #test = lambda:'';
-test = regex2;
+test = socket;
 test();
 
 

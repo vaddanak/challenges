@@ -73,10 +73,11 @@ rj:#run java
 # and python2 converted file stored as pyfile.py per the -w flag		
 convert:#convert python3 to python2
 	@./resources/3to2	-w ${mycodeDir}/palindrome/palindrome.py
-	
+
+# -B is also sys.dont_write_bytecode, ie .pyc or .pyo	
 py:# run python program
-	@python ${mycodeDir}/${problemName}/${problemName}.py	
-			
+	@python -B ${mycodeDir}/${problemName}/${problemName}.py	
+		
 	
 	
 	
