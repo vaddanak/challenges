@@ -81,16 +81,46 @@ def regex2():
 	pass;
 
 
+
 def socket():
 	print(sys.executable); # /usr/bin/python --> /usr/bin/python2.7
 	pass;
 	
 	
+
+
+'''
+
+'''
+def testCursor():
+	with pymysql.connect(host='localhost', user='root', password='') as cursor:
+		#cursor.execute('select * from testdb.employee where first_name=\'mo\';');
+		cursor.executemany("insert into testdb.employee(first_name,last_name) "
+			"values (%s, %s);", [('Sam','Wise'),('Sarah','Cutler'),('Mick','Jag')]);
+		data = cursor.fetchone();
+		print(data);
+		print(cursor.arraysize);
+		print(cursor.description);
+		pass
+		
+		po = re.compile(r'(abc|)def');
+		mo = po.search('xxabcdef');
+		if mo:
+			print(mo.group(0)); # abcdef
+		mo = po.search('xxdef');
+		if mo:
+			print(mo.group(0));	# def
+
+
 #print('======================================================================');
 
 #test = test_pymysql;
 #test = lambda:'';
-test = socket;
+
+#test = socket;
+
+test = testCursor;
+
 test();
 
 
