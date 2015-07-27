@@ -21,3 +21,10 @@ SAMPLE INPUT
 
 SAMPLE OUTPUT 
 Hi
+
+
+================================
+ALGORITHM
+
+Given binary sequence, convert into integer equivalent (code point).
+Convert this character code point into a literal char type.

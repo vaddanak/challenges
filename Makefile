@@ -35,10 +35,14 @@ vad:
 			grep -E '\.txt$$|\.py$$|\.java$$|\.cpp$$|\.h$$') \
 		$$(find ${mycodeDir}/reverse/ -type f | \
 			grep -E '\.txt$$|\.py$$|\.java$$|\.cpp$$|\.h$$') \
-		${mycodeDir}/smoke_signals/*.txt \
-		${mycodeDir}/hello_coin/*.txt \
-		${mycodeDir}/knights_and_knaves/*.txt \
-		${mycodeDir}/hello_world/*.txt \
+		$$(find ${mycodeDir}/smoke_signals/ -type f | \
+			grep -E '\.txt$$|\.py$$|\.java$$|\.cpp$$|\.h$$') \
+		$$(find ${mycodeDir}/hello_coin/ -type f | \
+			grep -E '\.txt$$|\.py$$|\.java$$|\.cpp$$|\.h$$') \
+		$$(find ${mycodeDir}/knights_and_knaves/ -type f | \
+			grep -E '\.txt$$|\.py$$|\.java$$|\.cpp$$|\.h$$') \
+		$$(find ${mycodeDir}/hello_world/ -type f | \
+			grep -E '\.txt$$|\.py$$|\.java$$|\.cpp$$|\.h$$') \
 		& #
 
 
@@ -50,7 +54,8 @@ vad:
 #problemName = hailo
 #problemName = pebbles
 #problemName = fibonacci
-problemName = reverse
+#problemName = reverse
+problemName = smoke_signals
 cc:# compile c++ source files
 	@g++ -Wall -o ${mycodeDir}/${problemName}/a.out \
 		${mycodeDir}/${problemName}/${problemName}.cpp
@@ -118,7 +123,7 @@ studypython:
 	@gedit --new-window ${pythonMysqlConnFiles} & #read?
 src_pymysql:#pymysql module source code, 70 total files (include .pyc files)
 	@gedit --new-window $$(find ./resources/pymysql/ -type f \
-		| grep -Ev '\.pyc$$') & #read? ER.py
+		| grep -Ev '\.pyc$$') & #read? ER.py 207
 src_git:#git source code, 2809 total files (including .txt files)
 	@gedit --new-window \
 		$$(find ./resources/git-master -type f | grep -Ev '\.txt$$' | \
