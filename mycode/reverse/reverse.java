@@ -21,25 +21,37 @@ public class reverse {
 		Scanner scan = new Scanner(System.in);
 		String input = scan.nextLine();
 
-
+		/*
+		//Mooshak complains with "Compile Time Error" when this section of
+		//code is used.
 		Pattern patternObject = 
 			Pattern.compile("^\\s*(?<first>\\d+)\\s*(?<second>\\d+)\\s*$");
 		//create object, not start search engine
 		Matcher match = patternObject.matcher(input);
 	
-		String first = "", second = "";	
+		String first = "";
+		String second = "";	
 		if(match.find()) { //attempts to find the match; start search engine
 			first = match.group("first");
 			second = match.group("second");			
 		}
+		*/
+	
+		String[] inputs = input.split("\\s");
+		String first = inputs[0];
+		String second = inputs[1];
 
-		StringBuilder b1 = new StringBuilder(first).reverse(), 
-			b2 = new StringBuilder(second).reverse(), b3;
+		StringBuilder b1 = new StringBuilder(first);
+		b1.reverse();
+		
+		StringBuilder b2 = new StringBuilder(second);
+		b2.reverse();
 		
 		int sum = Integer.parseInt(b1.toString()) + 
 			Integer.parseInt(b2.toString());
 			
-		b3 = new StringBuilder(String.valueOf(sum)).reverse();	
+		StringBuilder b3 = new StringBuilder(String.valueOf(sum));
+		b3.reverse();	
 		
 		//System.out.println(first + " " + second);
 		System.out.print(b3);
