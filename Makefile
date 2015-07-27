@@ -37,9 +37,12 @@ vad:
 			grep -E '\.txt$$|\.py$$|\.java$$|\.cpp$$|\.h$$') \
 		$$(find ${mycodeDir}/smoke_signals/ -type f | \
 			grep -E '\.txt$$|\.py$$|\.java$$|\.cpp$$|\.h$$') \
-		${mycodeDir}/hello_coin/*.txt \
-		${mycodeDir}/knights_and_knaves/*.txt \
-		${mycodeDir}/hello_world/*.txt \
+		$$(find ${mycodeDir}/hello_coin/ -type f | \
+			grep -E '\.txt$$|\.py$$|\.java$$|\.cpp$$|\.h$$') \
+		$$(find ${mycodeDir}/knights_and_knaves/ -type f | \
+			grep -E '\.txt$$|\.py$$|\.java$$|\.cpp$$|\.h$$') \
+		$$(find ${mycodeDir}/hello_world/ -type f | \
+			grep -E '\.txt$$|\.py$$|\.java$$|\.cpp$$|\.h$$') \
 		& #
 
 

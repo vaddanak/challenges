@@ -23,3 +23,17 @@ SAMPLE OUTPUT
 0.0547
 0.8062
 1.0000
+
+================================
+ALGORITHM
+
+Calculate probability formula for each H, up to H
+Formula is (n_choose_r) * (p)^r * (1-p)^(n-r)
+For example, 10 2
+step 1:  do "10 choose 2", which is 10!/(2! * (10-2)! )
+step 2:  find (.5)^2 * (.5)^(10-2)
+step 3:  multiply step 1 and step 2
+
+Follow step 1 - step 3 three times, for H=0, H=1, and H=2.
+Add the results for H=0, H=1, and H=2 to get probability of seeing "at most"
+2 heads when you do 10 trials, that is, 10 flips.
