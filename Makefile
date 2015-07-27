@@ -35,7 +35,8 @@ vad:
 			grep -E '\.txt$$|\.py$$|\.java$$|\.cpp$$|\.h$$') \
 		$$(find ${mycodeDir}/reverse/ -type f | \
 			grep -E '\.txt$$|\.py$$|\.java$$|\.cpp$$|\.h$$') \
-		${mycodeDir}/smoke_signals/*.txt \
+		$$(find ${mycodeDir}/smoke_signals/ -type f | \
+			grep -E '\.txt$$|\.py$$|\.java$$|\.cpp$$|\.h$$') \
 		${mycodeDir}/hello_coin/*.txt \
 		${mycodeDir}/knights_and_knaves/*.txt \
 		${mycodeDir}/hello_world/*.txt \
@@ -50,7 +51,8 @@ vad:
 #problemName = hailo
 #problemName = pebbles
 #problemName = fibonacci
-problemName = reverse
+#problemName = reverse
+problemName = smoke_signals
 cc:# compile c++ source files
 	@g++ -Wall -o ${mycodeDir}/${problemName}/a.out \
 		${mycodeDir}/${problemName}/${problemName}.cpp
