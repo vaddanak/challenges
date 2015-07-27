@@ -5,7 +5,7 @@ File: smoke_signals.py
 Purpose: Complete a program which converts a binary sequence to ASCII.
 Date: 2015/07/27
 
-Runs on python2 and python3!
+Runs on both python2 and python3?  YES
 '''
 
 from __future__ import print_function;
@@ -30,11 +30,33 @@ def convert(binary_sequence):
 	return list(reversed(_list));
 
 
-# first approach
+# option 1
 #print(''.join(convert(raw_input())), end='');
 
-# alternative approach
-po = re.compile(r'\d+');
-mo = po.search(sys.stdin.readline());
 
-print(''.join(convert(mo.group(0))), end='');
+# option 2
+#po = re.compile(r'\d+');
+#mo = po.search(sys.stdin.readline());
+#print(''.join(convert(mo.group(0))), end='');
+
+
+# option 3
+po = re.compile(r'\d{7}')
+_iter = po.finditer(sys.stdin.readline());
+for mo in _iter:
+	sys.stdout.write(chr(int(mo.group(0),2)));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
