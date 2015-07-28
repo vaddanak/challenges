@@ -55,7 +55,8 @@ vad:
 #problemName = pebbles
 #problemName = fibonacci
 #problemName = reverse
-problemName = smoke_signals
+#problemName = smoke_signals
+problemName = hello_coin
 cc:# compile c++ source files
 	@g++ -Wall -o ${mycodeDir}/${problemName}/a.out \
 		${mycodeDir}/${problemName}/${problemName}.cpp
@@ -72,7 +73,8 @@ cj:#compile java
 #example:  @${javabin}/java -classpath ./my_codes/palindrome: palindrome
 rj:#run java	
 	@${javabin}/java -help
-	@${javabin}/java -classpath ${mycodeDir}/${problemName}: ${problemName}
+	@${javabin}/java -classpath ${mycodeDir}/${problemName}: ${problemName} \
+		< ${mycodeDir}/${problemName}/data.txt
 
 # convert python3 to python2; original python3 file stored as pyfile.py.bak
 # and python2 converted file stored as pyfile.py per the -w flag		
