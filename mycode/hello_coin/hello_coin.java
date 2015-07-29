@@ -10,7 +10,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import java.util.Vector;
-//import java.util.Formatter;
+import java.util.Formatter;
 
 
 public class hello_coin {
@@ -22,11 +22,15 @@ public class hello_coin {
 	*/
 	public static void main(String[] args) {
 
+		Formatter f = new Formatter(System.out);//outputs to display
 		Scanner scan = new Scanner(System.in);
-		Vector<Hold> hold = new Vector<Hold>();
+		//Vector<Hold> holds = new Vector<Hold>();
+		hello_coin hc = new hello_coin();
 		
 		int numberOfCases = Integer.parseInt(scan.nextLine());
 		
+		/*
+		// option 1
 		//supported in Java 1.8 but what about Java 1.6 ??? NO
 		//Pattern pattern = Pattern.compile(" *(?<trials>\\d+) +(?<heads>\\d+) *");
 		//how about it Java 1.6 ??? unknown, Mooshak still complaining.
@@ -39,25 +43,43 @@ public class hello_coin {
 				//h.heads = Integer.parseInt(match.group("heads"));
 				h.trials = Integer.parseInt(match.group(1));
 				h.heads = Integer.parseInt(match.group(2));
-				hold.add(h);				
+				holds.add(h);				
 			}
 		}
-				
-		//for(Hold h : hold) {
-		//	System.out.println(calculate(h));
-		//}
+		*/		
 		
-		//System.out.println(calculate(10,0) + calculate(10,1) + calculate(10,2));
+		/*
+		// option 2
+		for(int i = 0; i < numberOfCases; ++i) {
+			String[] parts = scan.nextLine().split("\\s+");
+			Hold h = new Hold();
+			h.trials = Integer.parseInt(parts[0]);
+			h.heads = Integer.parseInt(parts[1]);
+			holds.add(h);
+		}
+		*/
 		
-		//Formatter f = new Formatter(System.out);//outputs to display
-						
-		for(int i = 0; i < hold.size(); ++i) {
-			Hold h = hold.get(i);
+		// option 3
+		for(int i = 0; i < numberOfCases; ++i) {
+			String[] parts = scan.nextLine().split("\\s+");
+			int trials = Integer.parseInt(parts[0]);
+			int heads = Integer.parseInt(parts[1]);
 			double sum = 0.0;
-			for(int j = 0; j < h.heads+1; ++j) {
-				//System.out.println(h.trials + " " + j);
+			for(int head = 0; head < heads+1; ++head)
+				sum += hc.calculate(trials, head);
+			
+			//System.out.println(String.format("%.4f", sum));
+			f.format("%.4f\n", sum);
+		}
+		
+		/*			
+		//loop through each case, calculate probability, and add to sum				
+		for(int i = 0; i < holds.size(); ++i) {
+			Hold h = holds.get(i);
+			double sum = 0.0;
+			for(int j = 0; j < h.heads+1; ++j)  //loop over heads 0,1,2,...,h
 				sum += calculate(h.trials,j);
-			}
+			
 			System.out.println(String.format("%.4f", sum) );
 			//f.format("%.4f", sum);
 			//f.flush(); //not needed bc System.out implements Flushable
@@ -66,7 +88,7 @@ public class hello_coin {
 			//	System.out.println(); 
 				//f.format("\n");//Mooshak complains when \n is last char.		
 		}
-
+		*/
 	}
 	
 	/*
@@ -75,7 +97,8 @@ public class hello_coin {
 	POSTCON: Fn returns num! .  Return type needs to be at least long because
 		overflow occurs for 15!
 	*/
-	public static long factorial(int num) {
+	//public static long factorial(int num) {
+	public long factorial(int num) {
 		if(num>1)
 			return num * factorial(num-1);
 		return 1;	
@@ -89,7 +112,8 @@ public class hello_coin {
 	PRECON:
 	POSTCON: Fn returns result of formula.
 	*/
-	public static double calculate(int trials, int heads) {
+	//public static double calculate(int trials, int heads) {
+	public double calculate(int trials, int heads) {
 		return ( factorial(trials) /
 			(factorial(heads)*factorial(trials-heads)) )
 			* Math.pow(0.5,heads) * Math.pow(0.5,trials-heads) ;	
@@ -97,7 +121,9 @@ public class hello_coin {
 
 }
 
+/*
 class Hold {
 	public int trials;
 	public int heads;
 }
+*/

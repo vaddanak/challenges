@@ -67,12 +67,12 @@ rc:# run c++ executable
 #example:  @${javabin}/javac ./my_codes/palindrome/palindrome.java
 #java doc:  google-chrome ./resources/javadir/jdk1.8.0_45/docs/index.html &
 cj:#compile java
-	@${javabin}/javac -help
+	#@${javabin}/javac -help
 	@${javabin}/javac ${mycodeDir}/${problemName}/${problemName}.java
 
 #example:  @${javabin}/java -classpath ./my_codes/palindrome: palindrome
 rj:#run java	
-	@${javabin}/java -help
+	#@${javabin}/java -help
 	@${javabin}/java -classpath ${mycodeDir}/${problemName}: ${problemName} \
 		< ${mycodeDir}/${problemName}/data.txt
 
