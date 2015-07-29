@@ -16,7 +16,6 @@ vad:
 		Makefile \
 		./resources/3to2 \
 		.git/config .git/info/exclude \
-		./src/string_operations.c \
 		${mycodeDir}/palindrome/problem_description.txt \
 		${mycodeDir}/palindrome/*.py \
 		${mycodeDir}/palindrome/*.java \
