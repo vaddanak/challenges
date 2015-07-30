@@ -56,7 +56,8 @@ vad:
 #problemName = fibonacci
 #problemName = reverse
 #problemName = smoke_signals
-problemName = hello_coin
+#problemName = hello_coin
+problemName = knights_and_knaves
 cc:# compile c++ source files
 	@g++ -Wall -o ${mycodeDir}/${problemName}/a.out \
 		${mycodeDir}/${problemName}/${problemName}.cpp
