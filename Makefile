@@ -56,7 +56,8 @@ vad:
 #problemName = fibonacci
 #problemName = reverse
 #problemName = smoke_signals
-problemName = hello_coin
+#problemName = hello_coin
+problemName = knights_and_knaves
 cc:# compile c++ source files
 	@g++ -Wall -o ${mycodeDir}/${problemName}/a.out \
 		${mycodeDir}/${problemName}/${problemName}.cpp
@@ -82,9 +83,15 @@ convert:#convert python3 to python2
 	@./resources/3to2	-w ${mycodeDir}/palindrome/palindrome.py
 
 # -B is also sys.dont_write_bytecode, ie .pyc or .pyo
-# -3 warns if python 2 code has compatibility issue with python 3
-py:# run python program
-	@python -3 -B ${mycodeDir}/${problemName}/${problemName}.py	
+# -3 warns if python 2 code has compatibility issue if run as python 3
+py2:# run python program
+	@python2 -3 -B ${mycodeDir}/${problemName}/${problemName}.py < \
+		${mycodeDir}/${problemName}/data.txt	
+
+py3:# run python program
+	@python3 -B ${mycodeDir}/${problemName}/${problemName}.py < \
+		${mycodeDir}/${problemName}/data.txt
+		
 		
 	
 	
