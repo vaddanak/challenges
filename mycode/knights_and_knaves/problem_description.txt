@@ -34,14 +34,26 @@ v:m0v0
 SAMPLE OUTPUT
 m
 
-
-
-
-
 ==============================
 ALGORITHM
 
+If mike is a knight, then he tells the truth and victor is "as is"
+If mike is a knave, then he lies and we interpret what he says about victor as
+false, ie the opposite he of what he says would be correct.
 
+Examine mike's line:
+	if m is 1, then v is "as is"
+	if m is 0, then v is not "as is", that is, the opposite is true.
+	
+Examine victor's line:
+	if v is 1, then m is "as is"
+	if v is 0, then m is not "as is"
+
+Compare both lines:
+	if both m's are same and both v's are same:
+		if m and v are different, then take the name with value of 1
+		if both m and v are same, then u
+	if the m's are different or v's are different, then u
 
 
 
