@@ -63,7 +63,8 @@ cc:# compile c++ source files
 		${mycodeDir}/${problemName}/${problemName}.cpp
 
 rc:# run c++ executable
-	@valgrind --leak-check=full ${mycodeDir}/${problemName}/a.out
+	@valgrind --leak-check=full ${mycodeDir}/${problemName}/a.out \
+		< ${mycodeDir}/${problemName}/data.txt
 
 #example:  @${javabin}/javac ./my_codes/palindrome/palindrome.java
 #java doc:  google-chrome ./resources/javadir/jdk1.8.0_45/docs/index.html &
