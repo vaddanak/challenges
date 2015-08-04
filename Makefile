@@ -10,7 +10,7 @@ gituser:
 		./src/string_operations.c \
 		& #
 		
-mycodeDir = /home/vad/challenges/mycode
+mycodeDir = ./mycode
 vad:
 	@gedit --new-window \
 		Makefile \
