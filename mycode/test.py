@@ -111,15 +111,25 @@ def testCursor():
 		if mo:
 			print(mo.group(0));	# def
 
-
+def test01():
+	#po = re.compile(r'(?x) (?P<open> \( )? [^()]{2} (?(open) \) )');#\ a
+	#po = re.compile(r'(?x) (?P<open> \( )?\ [^()]{2} (?(open) \) )');#\ ab	
+	po = re.compile(r'(?x) (?P<open> \( )?\ [abc]{1}? [xyz]? (?(open) \) )');
+	#mo = po.search('( abc )');
+	mo = po.search('( abcxyz )');
+	if mo:
+		print(mo.group(0));
+		print(re.escape(mo.group(0)));
+	
 #print('======================================================================');
 
 #test = test_pymysql;
 #test = lambda:'';
-
 #test = socket;
+#test = testCursor;
+test = test01;
 
-test = testCursor;
+
 
 test();
 
