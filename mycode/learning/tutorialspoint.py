@@ -7,4 +7,5 @@ from __future__ import absolute_import;
 import utils;
 
 
-utils.sendmail();
+#utils.sendmail();
+utils.htmlemail();
