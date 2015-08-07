@@ -263,9 +263,19 @@ def test12():
 	
 import utils; # second 'import utils' instance	
 	
+def test13():
+	import getopt; # module object visible in function namespace	
+	import sys;
+	opts, args = getopt.getopt(sys.argv[1:],'ab:cp:', ['help=','host','port']);	
+	print(opts);
+	print(args);
+	#print(sys.argv[1:]);
+	
+	
+	
 	
 ###		
-test = test12;
+test = test13;
 test();
 
 #import os;
