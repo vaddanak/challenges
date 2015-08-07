@@ -1,14 +1,27 @@
 #!/usr/bin/python
+'''
+Author: Vaddanak Seng
+File: vigenere_cipher.py
+Purpose: Encryption and decryption using Vigenere Cipher.
+Date: 2015/08/06
 
+Runs on both python2 and python3? YES
+'''
 
 from __future__ import print_function;
 from __future__ import division;
 from __future__ import unicode_literals;
 from __future__ import absolute_import;
 
+'''
+
+'''
 
 
 class PHPGoAway(object):
+	'''
+	
+	'''
 	def __init__(self):
 		self.tabulaRecta = self.__generateTabulaRecta();
 		
@@ -109,6 +122,8 @@ class PHPGoAway(object):
 			pass;	
 				
 		return ''.join(_list);
+		
+#--------------------------------------------		
 
 vig = PHPGoAway();
 vig.setKey('LEMON');
