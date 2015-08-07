@@ -260,6 +260,10 @@ def test12():
 		key, value = item;
 		print('{0:<{1:}} {2:>{3:}d}'.format(key, _max, value, _maxLen) );
 	
+	
+import utils; # second 'import utils' instance	
+	
+	
 ###		
 test = test12;
 test();

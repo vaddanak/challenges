@@ -124,8 +124,11 @@ class PHPGoAway(object):
 		return ''.join(_list);
 		
 #--------------------------------------------		
+classAlias = PHPGoAway;
 
-vig = PHPGoAway();
+#vig = PHPGoAway();
+vig = classAlias();
+
 vig.setKey('LEMON');
 print('forLove:', 'AttackAtDawn ->', vig.forLove('AttackAtDawn') );#LxfopvEfRnhr
 print('fromLove:', 'LxfopvEfRnhr ->', vig.fromLove('LxfopvEfRnhr'));#AttackAtDawn
