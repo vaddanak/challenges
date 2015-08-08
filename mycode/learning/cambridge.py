@@ -272,11 +272,89 @@ def test13():
 	#print(sys.argv[1:]);
 	
 	
+import threading;
+import time;
+
+class MyThread(threading.Thread):
+	def __init__(self, threadName, delayDuration):
+		
+		self.threadName = threadName;
+		self.delayDuration = delayDuration;
+		threading.Thread.__init__(self, name=threadName);
+		
+	def run(self):		
+		lock.acquire();	
+		print('Starting --', self.threadName);		
+		test14(self.threadName, self.delayDuration);
+		print('Exiting --', self.threadName);
+		lock.release();
+	
+def test14(threadName, delayDuration):
+	import threading;
+	import time;	
+	
+	count = 0;
+	while count < 5:
+		time.sleep(delayDuration);
+		print(threadName, time.ctime(time.time()) );
+		count += 1;
+	
+def test15():
+	weights = [0.1, 0.5, 2.6, 7.0, 5.3];
+	_sum = 0.0;
+	for weight in weights:
+		#print( '{:.1f} '.format(weight), end='');	
+		_sum += weight;
+	del weight;
+	print(_sum);
+	
+def test16():
+	metals = [ 'silver', 
+           'gold', 
+           'iron', 
+           'zinc', 
+           'aluminium', 
+           'copper', 
+           'magnesium', 
+           'lead' ];
+	           
+	print( metals[:metals.index('copper')] + metals[metals.index('copper')+1:] );
+	print( metals);
+	
+def test17():
+	data = [ 5.75, 8.25, 2.625, 5.50, 0.125, -12.875, 56.50, -32.125, -0.96875,
+         -5.875, 8.75, 53.9375, 192.125 ]
+	_len = len(data);
+	if _len % 2 == 0:
+		part = int(_len/2);		
+	else:
+		part = int(_len/2+1);
+		
+	data1 = data[:part];
+	data2 = data[part:];	
+	
+	print(_len);	
+	print(data1);
+	print(data2);
+	print(data1 + data2);
+	print(data);      	           
 	
 	
 ###		
-test = test13;
+test = test17;
 test();
+
+'''
+lock = threading.Lock();#define outside of run() bc need singleton
+thread1 = MyThread('thread-1', 1);
+thread2 = MyThread('thread-2', 1);
+thread1.start();
+thread2.start();
+threads = [thread1, thread2];
+for t in threads:
+	t.join(); #allows main thread to wait for children to finish its activity
+print('Exiting main thread');
+'''
 
 #import os;
 #with os.popen('ls -al') as ls:
