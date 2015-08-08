@@ -1,0 +1,284 @@
+#!/usr/bin/env python3
+
+from __future__ import print_function;
+from __future__ import division;
+from __future__ import unicode_literals;
+from __future__ import absolute_import;
+
+import sys;
+
+###
+
+if sys.version_info.major == 2: 	# Python 2 modules
+	try:
+		from email.MIMEMultipart import MIMEMultipart as mp;
+		from email.MIMEText import MIMEText as mt;
+		from __builtin__ import raw_input as input;
+	except:
+		print('Failed to import Python 2 modules');
+		exit(None);
+elif sys.version_info.major == 3: # Python 3 modules
+	try:
+		from email.mime.multipart import MIMEMultipart as mp;
+		from email.mime.text import MIMEText as mt;
+		from builtins import input as input;
+	except:
+		print('Failed to import Python 3 modules');
+		exit(None);	
+else:
+	print('Unknow Python version');
+	exit(None);
+
+import smtplib;
+
+import io;
+
+###
+
+def test1():
+	print('coffee\ncaf\u00e8\ncaffe' + 
+		'\u00e9nKaffee\n', end='');
+	sys.stdout.write('How much? ');	
+	_input = sys.stdin.readline();
+	sys.stdout.write(str(float(_input) + 2.5));
+	
+def test2():
+	print('1. ', 223 / 71);
+	print('2. ', (1 + (1/10))**10 );
+	print('3. ', (1 + (1/100))**100 );
+	print('4. ', (1 + (1/1000))**1000);
+	
+def test3():
+	print('sparrow' > 'eagle');
+	print('dog' > 'Cat' or 45%3==0);
+	print(60-45/5+10==1);
+	
+def email():	
+	msg = mp();
+	msg['From'] = 'vaddanak@gmail.com';
+	msg['To'] = 'vaddanak@mail.usf.edu';
+	msg['Subject'] = 'Testing smtp';
+	body = 'Nothing interesting';
+	msg.attach(mt(body,'plain'));
+	
+	_from = 'vaddanak@gmail.com';
+	toList = ['vaddanak@mail.usf.edu'];
+	message = \
+		'''
+		From: Vad Seng <vaddanak@gmail.com>
+		To: Vad at USF <vaddanak@mail.usf.edu>
+		Subject: Testing
+		
+		Message is a test.
+		'''
+	result = '';	
+	try:
+		#smtpObject.connect();
+		smtpObject = smtplib.SMTP('smtp.gmail.com', 587);
+		#smtpObject.ehlo();
+		smtpObject.starttls();
+		#smtpObject.ehlo();
+		smtpObject.login(user='vaddanak',password='ttgg8771');
+		#result = smtpObject.sendmail(_from, toList, message);
+		result = smtpObject.sendmail(_from, toList, msg.as_text());		
+		print("Sent OK");
+	except smtplib.SMTPException as err:
+		print("Sent BAD");
+		print('RESULT: ' + result);
+		print('ERR: ' + str(err));
+		
+	smtpObject.quit();
+	
+	print(type(io.open('cambridge.py')));
+	
+def email2():
+	# Specifying the from and to addresses
+
+	fromaddr = 'vaddanak@gmail.com'
+	toaddrs  = 'vaddanak@mail.usf.edu'
+
+	# Writing the message (this message will appear in the email)
+
+	msg = 'testing smtp 2'
+
+	# Gmail Login
+
+	username = 'vaddanak'
+	password = 'ttgg8771'
+
+	# Sending the mail  
+	
+	#works after https://www.google.com/settings/security/lesssecureapps 
+	#and 'turn ON' less secure access
+	server = smtplib.SMTP('smtp.gmail.com:587') 
+	#server = smtplib.SMTP_SSL('smtp.googlemail.com', 465)
+	server.ehlo()
+	server.starttls()
+	server.login(username,password)
+	server.sendmail(fromaddr, toaddrs, msg)
+	server.quit()	
+	
+def test4(*args):
+	_input = input('Number? ');
+	print(type(_input), type(args[1]), args[3]);
+	#sys.stdout.write('Number? ');
+	#_input = sys.stdin.readline();
+	sys.stdout.write(str(int(_input)**0.5) + '\n');
+	
+	
+def test5():
+	list1 = [0.3, 0.0, 0.4];
+	list2 = [0.2, 0.5, 0.6];
+	
+	sum = 0.0;
+	for index in range(len(list1)):	
+		sum += (list1[index]-list2[index])**2;
+	del index;
+	print(sum);
+	
+class testClass(object):
+	def __init__(self):
+		self.store = ['cat', 'mat', 'dog', 'fat'];
+		# __fat or __fat_ are private _{2}[a-zA-Z]+_?
+		# _fat or _fat__ or __fat__ are public
+		self.__fat___ = 'lucy'; 
+		
+	def __getitem__(self, index):		
+		return self.store[index];
+		
+	
+def test6():
+	foo = [4, 6, 2, 7, 3, 1, 9, 4, 2, 7, 4, 6, 0, 2];
+	bar = foo[3:12:3];
+	bar[2] += foo[4];
+	foo[0] = bar[1];
+	print(bar);	
+	print(testClass()[1]);
+	print(testClass().__fat___)
+	
+	_file = io.open(file='cambridge.py', mode='r');
+	print(_file.readline());
+	print(type(_file));
+	
+	_file.close();
+	
+def test7():
+	nchars = nwords = nlines = 0;
+	
+	for line in io.open('cambridge.py', 'r'):
+		nlines += 1;
+		nchars += len(line);
+		nwords += len(line.split());
+		
+	sys.stdout.write('lines:%d   characters:%d   words:%d\n' %
+		(nlines, nchars, nwords) );	
+	print(type(line)); # py2: <type 'unicode'>  py3: <class 'str'>
+	
+def test8():
+	import class1;	
+	class1.hi();
+	
+	_file = io.open('class2.py', 'w');
+	content = \
+	"from __future__ import print_function;\
+	\ndef hello():\
+	\n	print('hello');\
+	"
+	_file.write(content);
+	if sys.version_info.major==2:
+		exec(r'''_file.write(unicode('\n'));''');
+		#TypeError: must be unicode, not str	
+	exec(r'''_file.write('%d' % (5));''');
+	_file.close();
+	import class2;
+	class2.hello();
+	if sys.version_info.major==2:
+		moduleObject = eval('reload(class1)');
+		moduleObject.hi();
+	elif sys.version_info.major==3:
+		exec('import importlib;');
+		mo = eval('importlib.reload(class1)');
+		mo.hi();
+		pass;	
+		
+def total(numbers):
+	_sum = 0;
+	for num in numbers:
+		_sum += num;
+	return _sum;
+	
+def product(numbers):
+	_product = 1;
+	for num in numbers:
+		_product *= num;
+	return _product;	
+	
+import utils;
+
+def test9():
+	en_to_fr = {'cat':'chat', 'dog':'chien', 'mouse':'souris', 'snake':'serpent'};
+	for (key, value) in en_to_fr.items():
+		print(key, value);
+
+def test10(_list):
+	_list = ['the', 'cat', 'sat', 'on', 'the', 'mat' ];
+	_dict = {};
+	for x in _list:
+		if x in _dict.keys():
+			_dict[x] += 1;
+		else:
+			_dict[x] = 1;
+	
+	_dict['bird'] = 1.2;
+	itemList = list(_dict.items());	
+	itemList.sort();
+	for key, value in itemList:		
+		print('{:<5} {:1}'.format(key,value));
+	
+def test11():
+	dictionary = {'mouse':'rat\u00f3n', 'cat':'gato', 'dog':'perro'};
+	copy = {};
+	for key, value in dictionary.items():
+		key, value = value, key;			
+		copy[key] = value;
+	#print(dictionary);	
+	#print(dictionary['mouse']);
+		print('%-8s %-8s' % (key, copy[key]) );
+	
+def test12():
+	_list = [('Joe',9), ('Samantha',45), ('Methuselah',969)];
+	_max = len(_list[0][0]);
+	_maxLen = len(str(_list[0][1]));
+	for item in _list:
+		key, value = item;
+		if len(key) > _max:
+			_max = len(key);
+		if len(str(value)) > _maxLen:
+			_maxLen = len(str(value));	
+			
+	for item in _list:
+		key, value = item;
+		print('{0:<{1:}} {2:>{3:}d}'.format(key, _max, value, _maxLen) );
+	
+###		
+test = test12;
+test();
+
+#import os;
+#with os.popen('ls -al') as ls:
+#	print(ls.readline());
+
+#test = email2;
+
+#numbers = [7, -4, 1, 6, 5];
+#sys.stdout.write('total: %d\nproduct: %d\n' % 
+#	(total(numbers), product(numbers)));
+
+#filename = input('Enter filename: ');
+#print(filename, utils.file_stats(filename));
+
+#_listx = ['the', 'cat', 'sat', 'on', 'the', 'mat' ];
+#test(_listx);
+
+
+

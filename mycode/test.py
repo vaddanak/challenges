@@ -81,16 +81,56 @@ def regex2():
 	pass;
 
 
+
 def socket():
 	print(sys.executable); # /usr/bin/python --> /usr/bin/python2.7
 	pass;
 	
 	
+
+
+'''
+
+'''
+def testCursor():
+	with pymysql.connect(host='localhost', user='root', password='') as cursor:
+		#cursor.execute('select * from testdb.employee where first_name=\'mo\';');
+		cursor.executemany("insert into testdb.employee(first_name,last_name) "
+			"values (%s, %s);", [('Sam','Wise'),('Sarah','Cutler'),('Mick','Jag')]);
+		data = cursor.fetchone();
+		print(data);
+		print(cursor.arraysize);
+		print(cursor.description);
+		pass
+		
+		po = re.compile(r'(abc|)def');
+		mo = po.search('xxabcdef');
+		if mo:
+			print(mo.group(0)); # abcdef
+		mo = po.search('xxdef');
+		if mo:
+			print(mo.group(0));	# def
+
+def test01():
+	#po = re.compile(r'(?x) (?P<open> \( )? [^()]{2} (?(open) \) )');#\ a
+	#po = re.compile(r'(?x) (?P<open> \( )?\ [^()]{2} (?(open) \) )');#\ ab	
+	po = re.compile(r'(?x) (?P<open> \( )?\ [abc]{1}? [xyz]? (?(open) \) )');
+	#mo = po.search('( abc )');
+	mo = po.search('( abcxyz )');
+	if mo:
+		print(mo.group(0));
+		print(re.escape(mo.group(0)));
+	
 #print('======================================================================');
 
 #test = test_pymysql;
 #test = lambda:'';
-test = socket;
+#test = socket;
+#test = testCursor;
+test = test01;
+
+
+
 test();
 
 
