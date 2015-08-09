@@ -305,7 +305,7 @@ def test15():
 	for weight in weights:
 		#print( '{:.1f} '.format(weight), end='');	
 		_sum += weight;
-	del weight;
+	del weight; #remove loop variable 'weight'
 	print(_sum);
 	
 def test16():
@@ -317,32 +317,49 @@ def test16():
            'copper', 
            'magnesium', 
            'lead' ];
-	           
+	#create new list from 'metals' list without 'copper' item           
 	print( metals[:metals.index('copper')] + metals[metals.index('copper')+1:] );
 	print( metals);
 	
 def test17():
 	data = [ 5.75, 8.25, 2.625, 5.50, 0.125, -12.875, 56.50, -32.125, -0.96875,
          -5.875, 8.75, 53.9375, 192.125 ]
-	_len = len(data);
+	_len = len(data);#length of list 'data'
 	if _len % 2 == 0:
-		part = int(_len/2);		
+		part = int(_len/2);	#get index that is one pass center item	
 	else:
 		part = int(_len/2+1);
 		
-	data1 = data[:part];
+	#make deep-copy of 'metals' list	
+	data1 = data[:part]; #create new list that is sublist of list 'data'
 	data2 = data[part:];	
 	
 	print(_len);	
 	print(data1);
 	print(data2);
-	print(data1 + data2);
+	print(data1 + data2); #create new list and has same values as 'data'
 	print(data);      	           
 	
 	
-###		
-test = test17;
-test();
+def test18():
+	import utils;
+	utils.printDictionary(utils.names);
+	utils.printDictionary(utils.reverseDictionary(utils.names));
+	
+def poly(x):
+	return x**2 - 2.0;
+	
+			
+	
+###	
+
+'''	
+test = test18;
+#test();
+#print( utils.findRoot(poly,0.0,2.0, 1.0e-5) );
+print(utils.calculateStat( 1,2,3,4,5,6 ));
+print(utils.calculateStat() );
+'''
 
 '''
 lock = threading.Lock();#define outside of run() bc need singleton
@@ -355,6 +372,65 @@ for t in threads:
 	t.join(); #allows main thread to wait for children to finish its activity
 print('Exiting main thread');
 '''
+
+'''
+for element in utils.chemicals:#each key in chemicals dictionary; value is 3-tuple
+	(name, number, temperature) = utils.chemicals[element];#access tuple all at once
+	print('{:s}: {:.1f}K'.format(name, temperature) );
+	#print('{:s}: {:.1f}K'.format(utils.chemicals[element][0],
+	#	utils.chemicals[element][2])); #access in sequential manner like list, BAD!
+	
+del name, number, temperature, element; #clean up		
+'''
+
+'''
+#extract numbers from numbers.txt and find minimum, mean, and maximum number.
+import io;
+fileObject = io.open('numbers.txt');#use Python2/3 open function
+numbers = [];#store float values
+for number in fileObject:#data read in from file is a string; represents float value
+	numbers.append(float(number));#convert float as str type to float type
+fileObject.close();	#close file object
+del number, fileObject;#clean up
+print(utils.calculateStat(numbers));#find (minimum, mean, maximum) tuple
+'''
+
+'''
+#copy file line by line
+import sys, io;
+for line in sys.stdin:
+	sys.stdout.write(line);
+del line;
+'''
+
+'''
+#find (minimum,mean,maximum) for the numeric values given on command line
+import sys;
+from utils import calculateStat as stat;#create alias stat for calculateStat
+numbers = [];
+for arg in sys.argv[1:]:#create new list containing only options, access each one
+	numbers.append(int(arg));#command line argument values are strings, so convert
+if len(numbers):#arg defined if lenght is non-zero
+	del arg;	
+print(stat(numbers)); # print (minimum, mean, maximum
+'''
+
+#given list of element symbols on command line, display detail for each symbol
+#	and determine symbol with lowest atomic number
+import sys;
+import utils;
+from utils import calculateStat as stat;
+from utils import chemicals;
+numberToSymbol = {};
+for symbol in sys.argv[1:]:
+	(name, atomicNumber, boilingPoint) = chemicals[symbol];
+	numberToSymbol[atomicNumber] = symbol;
+	print('{:s} has a boiling point of {:.2f}K'.format(name, boilingPoint) );
+del symbol, name, atomicNumber, boilingPoint;
+(minimum, mean, maximum) = stat(numberToSymbol.keys());
+print('{:s} has lowest atomic number of {:d}'
+	.format(numberToSymbol[minimum], minimum) );
+
 
 #import os;
 #with os.popen('ls -al') as ls:
