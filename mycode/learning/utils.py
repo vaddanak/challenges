@@ -199,6 +199,38 @@ def calculateStat(*tupleOfNumbers):
 	return (lowest, total/len(tupleOfNumbers) if len(tupleOfNumbers)>0 else None,
 		largest); #indent to allow long expression to extend to multiple lines
 	
+def printDictValueIncreasingOrder(keyToValueDict):
+	'''
+	keyToValueDict is key to value mapping where each value is numeric or
+	sortable.
+	'''	
+	values = keyToValueDict.values();
+	values.sort();
+	valuesDec = values[:];
+	valuesDec.reverse();
+	
+	for index in range(len(values)):
+		# '%s' % (value) will convert value to string but 
+		# '{:s}'.format(value) won't convert value to string, ie if value is int
+		print('%10s%10s' % (values[index], valuesDec[index]) );
+	
+	values = keyToValueDict.keys();
+	values.sort(reverse=True);
+	for value in values:
+		print(keyToValueDict[value]);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
