@@ -349,9 +349,97 @@ def test18():
 def poly(x):
 	return x**2 - 2.0;
 	
-			
+
+def greet(time, person='user'):
+	import sys;
+	sys.stdout.write( 'Good {:s} {:s}\n'.format(time, person) );
+
+def file2dict(filename):
+	'''
+	The file 'filename' contains lines, each line has two words separated by
+	a space or tab.  Each line is interpreted as key and value pair and is added to
+	a dictionary object and returned to the caller.  If error occurs, return
+	value is None.
+	'''
+	import io;
+	import sys;
+	data = None;
+	_dict = {};	
+	try:
+		data = io.open(filename);# type(data) == io.TextIOWrapper != file
+		for line in data: # for each line in file
+			[key, value] = line.split();# split line into list of words			
+			_dict[key] = value;		
+		data.close();		
+		del line, key, value, data;#clean up
+	except:
+		#gives most recent exception.
+		#dangerous to use this traceback bc could cause circular reference.
+		(exceptionType, exceptionDetail, traceback) = sys.exc_info();	
+		print(sys.exc_info());
+		_dict = None;
+	'''	
+	except (IOError, ValueError) as err:
+		print(err);	
+		_dict = None;
+		if isinstance(err, IOError):
+			print("IOError");
+		if isinstance(err, ValueError):
+			print("ValueError");
+		if isinstance(data, io.IOBase):# isinstance(data,io.IOBase) == True
+			print('close file');
+			data.close();
+	'''		
+	'''		
+	except IOError: #not handled bc handled above
+		print('IOError exception');		
+	except ValueError: #not handled bc handled above
+		print('ValueError exception');
+	except: #handle any other exceptions
+		print('Unknown exception');
+	'''	
+	return _dict;
 	
+def dict2file(dictionary, filename='dictionary.txt'):
+	'''
+	Write dictionary content to dictionary.txt.
+	One dictionary item per line; key and value separated by single tab on line.
+	'''
+	import io, sys, os; #is this visible outside of function? NO
+	_file = None; #useful in case of early interruption, ie Ctrl-C breakage
+	try:
+		if os.path.exists(filename): #avoid overwriting existing file
+			sys.stdout.write('Filename {:s} already exists!\n' \
+				'Please give a different filename: '.format(filename) );
+			filename = input();	
+		_file = io.open(filename, 'w');
+		for key, value in dictionary.items():
+			#_file.write(key);#possible key is not string, so maybe error
+			#_file.write('\t');
+			#_file.write(value);#possible value is not string, so maybe error
+			#_file.write('\n');
+			_file.write('{:s}\t{:s}\n'.format(key, value) );
+		_file.close();
+		del key, value;
+		return True;	
+	except:#get recent exeception information
+		(exceptionType, exceptionDetail, traceback) = sys.exc_info();
+		sys.stdout.write('\nExceptionType: {:s}\nExceptionDetail: {:s}\n'
+			.format(exceptionType, exceptionDetail) );
+		if _file:
+			_file.close();
+		return False;	
+		#sys.exit(1); # is this necessary? no, will quit python interactive shell
+		
+		
+		
+		
 ###	
+
+
+#print(os.path.exists('chemicals.txt'));
+
+#print(file2dict('data.txt'));
 
 '''	
 test = test18;
@@ -415,6 +503,7 @@ if len(numbers):#arg defined if lenght is non-zero
 print(stat(numbers)); # print (minimum, mean, maximum
 '''
 
+'''
 #given list of element symbols on command line, display detail for each symbol
 #	and determine symbol with lowest atomic number
 import sys;
@@ -430,7 +519,7 @@ del symbol, name, atomicNumber, boilingPoint;
 (minimum, mean, maximum) = stat(numberToSymbol.keys());
 print('{:s} has lowest atomic number of {:d}'
 	.format(numberToSymbol[minimum], minimum) );
-
+'''
 
 #import os;
 #with os.popen('ls -al') as ls:
