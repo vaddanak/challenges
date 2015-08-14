@@ -10,6 +10,7 @@ import getopt;
 import socket;
 import threading;
 import subprocess;
+import re;
 
 #create alias to work with both python2 and python3
 if major==2:
@@ -34,12 +35,19 @@ target = '0.0.0.0';
 port = 9999;
 command = False;
 listen = False;
+execute = '';
+upload = False;
+upload_destination = '';
 
-
-
+#mode flags; private
+UPLOAD = '###UPLOAD###';
+EXECUTE = '###EXECUTE###';
+RE_QUIT = r'^\s*(quit|exit)\s*$(?i)';
+RE_UPLOAD = r'^###UPLOAD###';
+RE_EXECUTE = r'^###EXECUTE###';
 
 def main():
-	global target, port, command, listen;
+	global target, port, command, listen, execute, upload, upload_destination;
 	
 	if len(sys.argv[1:]): #length of command-line options
 		#parse obtions
@@ -47,8 +55,9 @@ def main():
 		#arguments is leftover ['-s','--option', ...] when given is bad syntax?
 		try:#example: python netcat2.py -t '127.0.0.1' --port=9999 --help
 			(options, arguments) = getopt.getopt(sys.argv[1:], 
-				'ht:p:cl', 
-				['help', 'target=', 'port=', 'command', 'listen']);
+				'ht:p:cle:u:', 
+				['help', 'target=', 'port=', 'command', 'listen', 'execute=',\
+					'upload=']);
 			# ['netcat2.py', '-t', '127.0.0.1', '--port=9999', '--help']	
 			print(sys.argv);
 			# [('-t', '127.0.0.1'), ('--port', '9999'), ('--help', '')]		
@@ -66,12 +75,32 @@ def main():
 					command = True;
 				if option in ('-l', '--listen'):
 					listen = True;	
+				if option in ('-e', '--execute'):
+					execute = value;	
+				if option in ('-u', '--upload'):
+					upload = True;
+					upload_destination = value;
 			
 			if not listen and len(target) and port>0:
-				data = sys.stdin.readline();#result includes newline, ie 'hi\n'
-				#outputs 2 newlines bc print() adds one '\n'; so let's turn one off
-				#if data.strip():
-				#	sys.stdout.write('You typed: %s' % data);
+				data = '';
+				if upload or command:
+					data = sys.stdin.read();#result includes newline, ie 'hi\n'
+					#outputs 2 newlines bc print() adds one '\n'; so let's turn
+					#  one off
+					#if data.strip():
+					#	sys.stdout.write('You typed: %s' % data);
+				
+				if len(execute):
+					data = EXECUTE + execute;
+					
+				if upload:
+					data = UPLOAD + data;			
+								
+				if '\n' not in data:
+					data = data + '\n';
+				
+					#sys.stdout.write(repr(data));
+				
 				client_send(data);#minimal sent is '\n'
 				
 			if listen:
@@ -87,15 +116,32 @@ def main():
 def client_handler(clientSocket, serverSocket):
 	try:
 		while True:			
-			response = '';		
+			response = '';	
+				
 			while '\n' not in response:
 				data = clientSocket.recv(1024);
 				response += data;
 				if not data: #check for empty string
 					break;
-					
-			try:		
+			
+			try:
+				if re.match(RE_UPLOAD, response):
+					print('uploading... done');
+					break;
+			except:
+				pass;
+				
+			try:	
+				if re.match(RE_EXECUTE, response):	
+					print('executing ... done');
+					break;					
+			except:
+				pass;
+				
+			try:						
 				#response contains '\n'
+				if re.search(RE_QUIT, response):
+					break;
 				response = subprocess.check_output(response.strip(), 
 					stderr=subprocess.STDOUT, shell=True);
 			except subprocess.CalledProcessError as err:
@@ -103,7 +149,7 @@ def client_handler(clientSocket, serverSocket):
 				response = 'ExceptionType: {:s}\nExceptionDetail: {:s}\n'\
 					.format(excType, excDetail);
 					
-			clientSocket.send(response + '<shell> '); 
+			clientSocket.send(response + '<shell> '); 			
 			#clientSocket.send('<shell> ');					
 				
 	except:
@@ -141,31 +187,39 @@ def server_loop():
 
 
 def client_send(data):
-	global target, port;
+	global target, port, command, execute, upload;
 	clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
 	
 	try:
 		clientSocket.connect((target, port));
 		print('client connected on {:s}:{:d}'.format(target, port) );
-		if len(data.strip()):
-			clientSocket.send(data); #why send here??
+		#if len(data.strip()):
+		clientSocket.send(data); #why send here??
 			
 		while True:
 			response = '';
-			recv_length = 1;
-			
+			recv_length = 1;			
 			while recv_length:
 				data = clientSocket.recv(4096);
 				response += data;
-				recv_length = len(data);
+				recv_length = len(data);				
 				if recv_length < 4096: #left over; nothing else after this
 					break;
-					
+			#sys.stdout.flush() required if not output with '\n' ;
+			#  for example, sys.stdout.write(response + '\n') or print(end='\n')
+			#  otherwise, data is written to buffer and not pushed to display device
 			sys.stdout.write(response);
-			response = input(); # '\n' not included
-			response += '\n'; #signal end-of-message to thread processing client
-			clientSocket.send(response);			
-		
+			sys.stdout.flush(); 
+			if len(execute) or upload:
+				break;
+			
+			if command:
+				response = input(); # '\n' not included
+				if re.search(RE_QUIT, response):
+					break;
+				response += '\n'; #signal end-of-message to thread processing client
+				clientSocket.send(response);			
+							
 	except:
 		(exceptionType, exceptionDetail, traceback) = sys.exc_info();
 		print('in client_send(data):\n\t{:s}\n\t{:s}\n'

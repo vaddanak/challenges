@@ -131,10 +131,11 @@ studyjava:
 studypython:
 	#@gedit --new-window ${pythonCloudFiles} & #read?
 	@gedit --new-window ${pythonMysqlConnFiles} & #read?
-src_pymysql:#pymysql module source code, 70 total files (include .pyc files)
+
+pymysql:#pymysql module source code, 70 total files (include .pyc files)
 	@gedit --new-window $$(find ./resources/pymysql/ -type f \
 		| grep -Ev '\.pyc$$') & #read? err.py 0
-src_git:#git source code, 2809 total files (including .txt files)
+git:#git source code, 2809 total files (including .txt files)
 	@gedit --new-window \
 		$$(find ./resources/git-master -type f | grep -Ev '\.txt$$' | \
 		sed -n '1,20p') \
