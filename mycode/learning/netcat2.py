@@ -83,21 +83,20 @@ def main():
 			
 			if not listen and len(target) and port>0:
 				data = '';
-				if upload or command:
+				if upload or (not command and not len(execute)):
 					data = sys.stdin.read();#result includes newline, ie 'hi\n'
+					if upload:
+						data = UPLOAD + data;
 					#outputs 2 newlines bc print() adds one '\n'; so let's turn
 					#  one off
 					#if data.strip():
 					#	sys.stdout.write('You typed: %s' % data);
 				
 				if len(execute):
-					data = EXECUTE + execute;
-					
-				if upload:
-					data = UPLOAD + data;			
+					data = EXECUTE + execute;							
 								
-				if '\n' not in data:
-					data = data + '\n';
+				if command:
+					data = '\n';
 				
 					#sys.stdout.write(repr(data));
 				
@@ -115,6 +114,39 @@ def main():
 
 def client_handler(clientSocket, serverSocket):
 	try:
+		response = '';
+		while True:
+			data = clientSocket.recv(4096);
+			response += data;
+			if len(data) < 4096:#all remaining data are read
+				break;
+				
+		#check for ###EXECUTE###
+		if re.match(RE_EXECUTE, response):
+			response = re.sub(RE_EXECUTE,'',response);#remove prepended flag
+			(status, output) = process_command(response);
+			clientSocket.send(output);
+			if not status:
+				print('Failed to execute command');			
+			
+		#check for ###UPLOAD###
+		elif re.match(RE_UPLOAD, response):	
+			print('requesting to upload');
+		
+		#check for command
+		else:
+			clientSocket.send('<shell> ');
+			shell_loop(clientSocket);		
+				
+	except:
+		(excType, excDetail, traceback) = sys.exc_info();
+		print('in client_handler(clientSocket, serverSocket):\n'\
+			'ExceptionType: {:s}\nExceptionDetail: {:s}\n'\
+			.format(excType, excDetail) );
+		
+		
+	'''
+	try:
 		while True:			
 			response = '';	
 				
@@ -127,6 +159,9 @@ def client_handler(clientSocket, serverSocket):
 			try:
 				if re.match(RE_UPLOAD, response):
 					print('uploading... done');
+					#remove prepended flag r'^###UPLOAD###'
+					response = re.sub(RE_UPLOAD,'',response);
+					print(response);
 					break;
 			except:
 				pass;
@@ -134,6 +169,9 @@ def client_handler(clientSocket, serverSocket):
 			try:	
 				if re.match(RE_EXECUTE, response):	
 					print('executing ... done');
+					#remove prepended flag r'^###EXECUTE###'
+					response = re.sub(RE_EXECUTE,'',response);
+					print(response);
 					break;					
 			except:
 				pass;
@@ -157,9 +195,10 @@ def client_handler(clientSocket, serverSocket):
 		print('in client_handler(clientSocket, serverSocket):\n  ' +\
 			'ExceptionType: {:s}\n  ExceptionDetail: {:s}\n'
 			.format(exceptionType, exceptionDetail) );
+	'''
 			
 	if clientSocket:		
-		print('in client_handler(...): clientSocket closed');		
+		print('in client_handler(...):  clientSocket closed');		
 		clientSocket.close();	
 			
 
@@ -189,36 +228,36 @@ def server_loop():
 def client_send(data):
 	global target, port, command, execute, upload;
 	clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
-	
+	memsize = 4096 * 1;
 	try:
 		clientSocket.connect((target, port));
 		print('client connected on {:s}:{:d}'.format(target, port) );
 		#if len(data.strip()):
-		clientSocket.send(data); #why send here??
+		clientSocket.send(data); #why send here?? both ends recv is stalemate
 			
 		while True:
 			response = '';
 			recv_length = 1;			
 			while recv_length:
-				data = clientSocket.recv(4096);
+				data = clientSocket.recv(memsize);
 				response += data;
 				recv_length = len(data);				
-				if recv_length < 4096: #left over; nothing else after this
+				if recv_length < memsize: #left over; nothing else after this
 					break;
 			#sys.stdout.flush() required if not output with '\n' ;
 			#  for example, sys.stdout.write(response + '\n') or print(end='\n')
 			#  otherwise, data is written to buffer and not pushed to display device
 			sys.stdout.write(response);
 			sys.stdout.flush(); 
-			if len(execute) or upload:
-				break;
-			
+						
 			if command:
 				response = input(); # '\n' not included
 				if re.search(RE_QUIT, response):
 					break;
 				response += '\n'; #signal end-of-message to thread processing client
-				clientSocket.send(response);			
+				clientSocket.send(response);
+			else:
+				break;							
 							
 	except:
 		(exceptionType, exceptionDetail, traceback) = sys.exc_info();
@@ -228,6 +267,47 @@ def client_send(data):
 	if clientSocket:		
 		print('in client_send(data): clientSocket closed');
 		clientSocket.close();	
+		
+
+def process_command(command_string):
+	output = '';
+	status = False;
+	try:
+		output = subprocess.check_output(command_string.strip(),\
+			stderr = subprocess.STDOUT, shell = True);
+		status = True;	
+	except:
+		(excType, excDetail, traceback) = sys.exc_info();
+		print( 'in process_command(command_string):\nExceptionType: {:s}\n'\
+			'ExceptionDetail: {:s}\n'.format(excType, excDetail) );
+		output = 'Failed to process command: {:s}\n'.format(command_string);
+		status = False;
+	return (status,output);
+	
+	
+def shell_loop(client_socket):
+	while True:
+		response = '';		
+		try:
+			while '\n' not in response:
+				data = client_socket.recv(1024); #message expected to end with '\n'
+				response += data;
+				if not data: #empty string means no more message to read
+					break;
+		
+			if re.search(RE_QUIT, response):#check if requesting to quit
+				break;
+			(status, response) = process_command(response);	
+			client_socket.send(response + '<shell> ');	
+		except:
+			(excType, excDetail, traceback) = sys.exc_info();
+			print('in shell_loop(client_client):\nExceptionType: {:s}\n'\
+				'ExceptionDetail: {:s}\n'.format(excType, excDetail) );		
+			break;
+	if client_socket:
+		client_socket.close();
+		print('in shell_loop(client_socket):  client_socket is closed.');
+
 			
 main();	
 

@@ -80,12 +80,22 @@ output:
 '''
 	
 	
+def test2():
+	'''
+	Parse user command line options.
+	'''
+	import argparse;
+	parser = argparse.ArgumentParser(description="Program does nothing useful");
+	parser.add_argument("-o","--output",help="Name of output file",\
+		dest="output_file", default="output.dat", type=str);
+	parser.add_argument(dest="dirs", default=[], type=str, nargs="*",\
+		help="directories to process");	
+	arguments = parser.parse_args();
+	print(arguments.output_file);
+	print(arguments.dirs);
 	
 	
-	
-	
-	
-	
+test2();	
 	
 	
 	
