@@ -4,7 +4,7 @@ Author by Bob Dowling
 '''
 
 import argparse
-import numpy
+#import numpy
 
 # Build a basic parser.
 help_text = 'Plot a graph of x=sin(at), y=sin(bt+c), with graph title provided by the user.'
@@ -21,10 +21,12 @@ parser.add_argument(                 dest='file',  type=argparse.FileType('wb'),
 
 # Parse the command line
 arguments = parser.parse_args()
-# print(arguments)
+print(arguments)
 
 # Create the graph
 # Matplotlib is slow to load so put it here to not delay the parsing
+
+'''
 import matplotlib.pyplot as pyplot
 
 npts = arguments.npts
@@ -45,4 +47,4 @@ if arguments.title:
 f = arguments.file
 pyplot.savefig(f)
 f.close()
-
+'''
