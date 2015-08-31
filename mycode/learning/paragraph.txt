@@ -1,8 +1,0 @@
-We have covered only
-simple regular expressions!
-Capable of much more!
-We have focused on getting Python to use them.
-UCS course:
-“Pattern Matching Using Regular Expressions”
-focuses on the expressions themselves and not on
-the language using them.
