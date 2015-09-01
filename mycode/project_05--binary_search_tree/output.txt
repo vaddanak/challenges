@@ -1,0 +1,392 @@
+=================================================
+testing with int type; creating a simple tree
+Display original tree:
+                8
+                        7
+        6
+ 5
+                4
+        3
+                2
+Tree is copied by assignment:
+                8
+                        7
+        6
+ 5
+                4
+        3
+                2
+Tree is copied by copy-constructor:
+                8
+                        7
+        6
+ 5
+                4
+        3
+                2
+Tree is empty:
+bstEmpty isEmpty: true
+bst isEmpty: false
+search for 3: true
+search for 9: false
+successor to 3: 4
+predecessor to 3: 2
+Minimum: 2
+Maximum: 8
+Height: 4
+Size: 7
+inorder : 2 3 4 5 6 7 8 
+postorder : 2 4 3 7 8 6 5 
+preorder : 5 3 2 4 6 8 7 
+before remove 3: 
+                8
+                        7
+        6
+ 5
+                4
+        3
+                2
+after remove 3: 
+                8
+                        7
+        6
+ 5
+        4
+                2
+before insert 3: 
+                8
+                        7
+        6
+ 5
+        4
+                2
+after insert 3: 
+                8
+                        7
+        6
+ 5
+        4
+                        3
+                2
+
+
+=================================================
+testing with int type; creating a balanced tree
+Display original tree:
+                91
+        62
+                        60
+                58
+ 50
+                        37
+                                24
+                20
+        15
+                        8
+                5
+                        3
+Tree is copied by assignment:
+                91
+        62
+                        60
+                58
+ 50
+                        37
+                                24
+                20
+        15
+                        8
+                5
+                        3
+Tree is copied by copy-constructor:
+                91
+        62
+                        60
+                58
+ 50
+                        37
+                                24
+                20
+        15
+                        8
+                5
+                        3
+Tree is empty:
+bstEmpty isEmpty: true
+bst isEmpty: false
+search for 60: true
+search for 91: true
+successor to 60: 62
+predecessor to 60: 58
+Minimum: 3
+Maximum: 91
+Height: 5
+Size: 12
+inorder : 3 5 8 15 20 24 37 50 58 60 62 91 
+postorder : 3 8 5 24 37 20 15 60 58 91 62 50 
+preorder : 50 15 5 3 8 20 37 24 62 58 60 91 
+before remove 60: 
+                91
+        62
+                        60
+                58
+ 50
+                        37
+                                24
+                20
+        15
+                        8
+                5
+                        3
+after remove 60: 
+                91
+        62
+                58
+ 50
+                        37
+                                24
+                20
+        15
+                        8
+                5
+                        3
+before insert 60: 
+                91
+        62
+                58
+ 50
+                        37
+                                24
+                20
+        15
+                        8
+                5
+                        3
+after insert 60: 
+                91
+        62
+                        60
+                58
+ 50
+                        37
+                                24
+                20
+        15
+                        8
+                5
+                        3
+
+
+=================================================
+testing with user-defined type; creating a balanced tree
+Display original tree:
+                        WY
+                VT
+                        TX
+        RI
+                PA
+                        OH
+ NY
+                MA
+                        IN
+        IL
+                GA
+                        DE
+Tree is copied by assignment:
+                        WY
+                VT
+                        TX
+        RI
+                PA
+                        OH
+ NY
+                MA
+                        IN
+        IL
+                GA
+                        DE
+Tree is copied by copy-constructor:
+                        WY
+                VT
+                        TX
+        RI
+                PA
+                        OH
+ NY
+                MA
+                        IN
+        IL
+                GA
+                        DE
+Tree is empty:
+bstEmpty isEmpty: true
+bst isEmpty: false
+search for MA: true
+search for FL: false
+successor to MA: NY
+predecessor to MA: IN
+Minimum: DE
+Maximum: WY
+Height: 4
+Size: 12
+inorder : DE GA IL IN MA NY OH PA RI TX VT WY 
+postorder : DE GA IN MA IL OH PA TX WY VT RI NY 
+preorder : NY IL GA DE MA IN RI PA OH VT TX WY 
+before remove MA: 
+                        WY
+                VT
+                        TX
+        RI
+                PA
+                        OH
+ NY
+                MA
+                        IN
+        IL
+                GA
+                        DE
+after remove MA: 
+                        WY
+                VT
+                        TX
+        RI
+                PA
+                        OH
+ NY
+                IN
+        IL
+                GA
+                        DE
+before insert MA: 
+                        WY
+                VT
+                        TX
+        RI
+                PA
+                        OH
+ NY
+                IN
+        IL
+                GA
+                        DE
+after insert MA: 
+                        WY
+                VT
+                        TX
+        RI
+                PA
+                        OH
+ NY
+                        MA
+                IN
+        IL
+                GA
+                        DE
+
+
+=================================================
+testing with user-defined type; creating a "linear" tree
+Display original tree:
+                                                                                        WY
+                                                                                VT
+                                                                        TX
+                                                                RI
+                                                        PA
+                                                OH
+                                        NY
+                                MA
+                        IN
+                IL
+        GA
+ DE
+Tree is copied by assignment:
+                                                                                        WY
+                                                                                VT
+                                                                        TX
+                                                                RI
+                                                        PA
+                                                OH
+                                        NY
+                                MA
+                        IN
+                IL
+        GA
+ DE
+Tree is copied by copy-constructor:
+                                                                                        WY
+                                                                                VT
+                                                                        TX
+                                                                RI
+                                                        PA
+                                                OH
+                                        NY
+                                MA
+                        IN
+                IL
+        GA
+ DE
+Tree is empty:
+bstEmpty isEmpty: true
+bst isEmpty: false
+search for MA: true
+search for FL: false
+successor to MA: NY
+predecessor to MA: IN
+Minimum: DE
+Maximum: WY
+Height: 12
+Size: 12
+inorder : DE GA IL IN MA NY OH PA RI TX VT WY 
+postorder : WY VT TX RI PA OH NY MA IN IL GA DE 
+preorder : DE GA IL IN MA NY OH PA RI TX VT WY 
+before remove MA: 
+                                                                                        WY
+                                                                                VT
+                                                                        TX
+                                                                RI
+                                                        PA
+                                                OH
+                                        NY
+                                MA
+                        IN
+                IL
+        GA
+ DE
+after remove MA: 
+                                                                                WY
+                                                                        VT
+                                                                TX
+                                                        RI
+                                                PA
+                                        OH
+                                NY
+                        IN
+                IL
+        GA
+ DE
+before insert MA: 
+                                                                                WY
+                                                                        VT
+                                                                TX
+                                                        RI
+                                                PA
+                                        OH
+                                NY
+                        IN
+                IL
+        GA
+ DE
+after insert MA: 
+                                                                                WY
+                                                                        VT
+                                                                TX
+                                                        RI
+                                                PA
+                                        OH
+                                NY
+                                        MA
+                        IN
+                IL
+        GA
+ DE
+

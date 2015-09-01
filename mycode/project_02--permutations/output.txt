@@ -1,0 +1,102 @@
+./a.out
+===== TESTING FUNCTION outputArray(..) =====
+0 1 2 
+0 1.1 2.2 
+[Mary Lamb female] [Joe Smoot male] [Hero Smith unknown] 
+[Mary Lamb 20 120.5] [Joe Smoot 15 89.4] [Hero Smith 45 349.1] 
+===== TESTING FUNCTION factorial(..) =====
+1! = 1
+6! = 720
+13! = 6227020800
+===== TESTING FUNCTION outputPermutations(..) =====
+Unique permutations of array { 0 1 2 } are ...
+2 1 0 
+1 2 0 
+1 0 2 
+2 0 1 
+0 2 1 
+0 1 2 
+
+Unique permutations of array { 0 1.1 2.2 } are ...
+2.2 1.1 0 
+1.1 2.2 0 
+1.1 0 2.2 
+2.2 0 1.1 
+0 2.2 1.1 
+0 1.1 2.2 
+
+Unique permutations of array { 0 1.1 2.2 3.3 } are ...
+3.3 1.1 0 2.2 
+1.1 3.3 0 2.2 
+1.1 0 3.3 2.2 
+1.1 0 2.2 3.3 
+3.3 1.1 2.2 0 
+1.1 3.3 2.2 0 
+1.1 2.2 3.3 0 
+1.1 2.2 0 3.3 
+3.3 2.2 1.1 0 
+2.2 3.3 1.1 0 
+2.2 1.1 3.3 0 
+2.2 1.1 0 3.3 
+3.3 0 1.1 2.2 
+0 3.3 1.1 2.2 
+0 1.1 3.3 2.2 
+0 1.1 2.2 3.3 
+3.3 0 2.2 1.1 
+0 3.3 2.2 1.1 
+0 2.2 3.3 1.1 
+0 2.2 1.1 3.3 
+3.3 2.2 0 1.1 
+2.2 3.3 0 1.1 
+2.2 0 3.3 1.1 
+2.2 0 1.1 3.3 
+
+Unique permutations of array { [Mary Lamb female] [Joe Smoot male] [Hero Smith unknown] } are ...
+[Hero Smith unknown] [Joe Smoot male] [Mary Lamb female] 
+[Joe Smoot male] [Hero Smith unknown] [Mary Lamb female] 
+[Joe Smoot male] [Mary Lamb female] [Hero Smith unknown] 
+[Hero Smith unknown] [Mary Lamb female] [Joe Smoot male] 
+[Mary Lamb female] [Hero Smith unknown] [Joe Smoot male] 
+[Mary Lamb female] [Joe Smoot male] [Hero Smith unknown] 
+
+Unique permutations of array { [Mary Lamb 20 120.5] } is ...
+[Mary Lamb 20 120.5] 
+
+Unique permutations of array { [Mary Lamb 20 120.5] [Joe Smoot 15 89.4] } are ...
+[Mary Lamb 20 120.5] [Joe Smoot 15 89.4] 
+[Joe Smoot 15 89.4] [Mary Lamb 20 120.5] 
+
+Unique permutations of array { [Mary Lamb 20 120.5] [Joe Smoot 15 89.4] [Hero Smith 45 349.1] } are ...
+[Hero Smith 45 349.1] [Joe Smoot 15 89.4] [Mary Lamb 20 120.5] 
+[Joe Smoot 15 89.4] [Hero Smith 45 349.1] [Mary Lamb 20 120.5] 
+[Joe Smoot 15 89.4] [Mary Lamb 20 120.5] [Hero Smith 45 349.1] 
+[Hero Smith 45 349.1] [Mary Lamb 20 120.5] [Joe Smoot 15 89.4] 
+[Mary Lamb 20 120.5] [Hero Smith 45 349.1] [Joe Smoot 15 89.4] 
+[Mary Lamb 20 120.5] [Joe Smoot 15 89.4] [Hero Smith 45 349.1] 
+
+Unique permutations of array { [Mary Lamb 20 120.5] [Joe Smoot 15 89.4] [Hero Smith 45 349.1] [Candace Cat 30 120.45] } are ...
+[Candace Cat 30 120.45] [Joe Smoot 15 89.4] [Mary Lamb 20 120.5] [Hero Smith 45 349.1] 
+[Joe Smoot 15 89.4] [Candace Cat 30 120.45] [Mary Lamb 20 120.5] [Hero Smith 45 349.1] 
+[Joe Smoot 15 89.4] [Mary Lamb 20 120.5] [Candace Cat 30 120.45] [Hero Smith 45 349.1] 
+[Joe Smoot 15 89.4] [Mary Lamb 20 120.5] [Hero Smith 45 349.1] [Candace Cat 30 120.45] 
+[Candace Cat 30 120.45] [Joe Smoot 15 89.4] [Hero Smith 45 349.1] [Mary Lamb 20 120.5] 
+[Joe Smoot 15 89.4] [Candace Cat 30 120.45] [Hero Smith 45 349.1] [Mary Lamb 20 120.5] 
+[Joe Smoot 15 89.4] [Hero Smith 45 349.1] [Candace Cat 30 120.45] [Mary Lamb 20 120.5] 
+[Joe Smoot 15 89.4] [Hero Smith 45 349.1] [Mary Lamb 20 120.5] [Candace Cat 30 120.45] 
+[Candace Cat 30 120.45] [Hero Smith 45 349.1] [Joe Smoot 15 89.4] [Mary Lamb 20 120.5] 
+[Hero Smith 45 349.1] [Candace Cat 30 120.45] [Joe Smoot 15 89.4] [Mary Lamb 20 120.5] 
+[Hero Smith 45 349.1] [Joe Smoot 15 89.4] [Candace Cat 30 120.45] [Mary Lamb 20 120.5] 
+[Hero Smith 45 349.1] [Joe Smoot 15 89.4] [Mary Lamb 20 120.5] [Candace Cat 30 120.45] 
+[Candace Cat 30 120.45] [Mary Lamb 20 120.5] [Joe Smoot 15 89.4] [Hero Smith 45 349.1] 
+[Mary Lamb 20 120.5] [Candace Cat 30 120.45] [Joe Smoot 15 89.4] [Hero Smith 45 349.1] 
+[Mary Lamb 20 120.5] [Joe Smoot 15 89.4] [Candace Cat 30 120.45] [Hero Smith 45 349.1] 
+[Mary Lamb 20 120.5] [Joe Smoot 15 89.4] [Hero Smith 45 349.1] [Candace Cat 30 120.45] 
+[Candace Cat 30 120.45] [Mary Lamb 20 120.5] [Hero Smith 45 349.1] [Joe Smoot 15 89.4] 
+[Mary Lamb 20 120.5] [Candace Cat 30 120.45] [Hero Smith 45 349.1] [Joe Smoot 15 89.4] 
+[Mary Lamb 20 120.5] [Hero Smith 45 349.1] [Candace Cat 30 120.45] [Joe Smoot 15 89.4] 
+[Mary Lamb 20 120.5] [Hero Smith 45 349.1] [Joe Smoot 15 89.4] [Candace Cat 30 120.45] 
+[Candace Cat 30 120.45] [Hero Smith 45 349.1] [Mary Lamb 20 120.5] [Joe Smoot 15 89.4] 
+[Hero Smith 45 349.1] [Candace Cat 30 120.45] [Mary Lamb 20 120.5] [Joe Smoot 15 89.4] 
+[Hero Smith 45 349.1] [Mary Lamb 20 120.5] [Candace Cat 30 120.45] [Joe Smoot 15 89.4] 
+[Hero Smith 45 349.1] [Mary Lamb 20 120.5] [Joe Smoot 15 89.4] [Candace Cat 30 120.45] 
+

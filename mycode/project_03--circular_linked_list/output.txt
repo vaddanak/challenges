@@ -1,0 +1,69 @@
+Creating empty list...
+   size: 0  isEmpty? true  content: 
+Inserting at consecutive positions...
+   size: 5  isEmpty? false  content: 3 4 5 6 7 
+Inserting at random positions...
+   size: 10  isEmpty? false  content: 33 3 55 4 77 88 5 6 7 99 
+Removing at random positions...
+   size: 7  isEmpty? false  content: 3 55 4 88 5 6 7 
+Create copy using copy constructor...
+   size: 7  isEmpty? false  content: 3 55 4 88 5 6 7 
+Create copy using assignment operator...
+   size: 7  isEmpty? false  content: 3 55 4 88 5 6 7 
+Testing overloaded extraction operator...
+   3 55 4 88 5 6 7 
+Removing all items in list...
+   size: 0  isEmpty? true  content: 
+Creating list with user-defined type...
+   size: 5  isEmpty? false  content: Mike Mary Jack Jill Pat 
+=====================================
+Testing runJosephusAlgorithm() using int list 
+The original list content: 3 55 4 88 5 6 7 
+
+soldierPosition: 5  countTo: 9  soldiers: 3 55 4 88 5 6 7 
+remove soldier: 7
+
+soldierPosition: 2  countTo: 11  soldiers: 3 55 4 88 5 6 
+remove soldier: 3
+
+soldierPosition: 4  countTo: 7  soldiers: 55 4 88 5 6 
+remove soldier: 55
+
+soldierPosition: 3  countTo: 4  soldiers: 4 88 5 6 
+remove soldier: 5
+
+soldierPosition: 0  countTo: 4  soldiers: 4 88 6 
+remove soldier: 4
+
+soldierPosition: 0  countTo: 0  soldiers: 88 6 
+remove soldier: 88
+
+last soldier: 6
+=====================================
+Testing runJosephusAlgorithm() using user-defined list:
+The original list content: Mike Mary Jack Jill Pat 
+
+soldierPosition: 4  countTo: 7  soldiers: Mike Mary Jack Jill Pat 
+remove soldier: Mike
+
+soldierPosition: 0  countTo: 0  soldiers: Mary Jack Jill Pat 
+remove soldier: Mary
+
+soldierPosition: 2  countTo: 0  soldiers: Jack Jill Pat 
+remove soldier: Pat
+
+soldierPosition: 1  countTo: 3  soldiers: Jack Jill 
+remove soldier: Jill
+
+last soldier: Jack
+=====================================
+Displaying intact, original, user-defined list:
+   Mike Mary Jack Jill Pat 
+=====================================
+Removing all items from user-defined list:
+   size: 0  isEmpty? true  content: 
+=====================================
+Testing runJosephusAlgorithm() with empty user-defined list:
+
+last soldier: 
+
