@@ -1,0 +1,20 @@
+The website files are all contained in this "howto" directory.  
+
+The purpose of this application is to create a personal knowledge base to hold
+my own "frequently asked questions" that arises in pursuit of my daily interests.
+
+I had setup an Apache server and MySQL server on my laptop and created a
+virtualhost to run this application.  So I would access it by using a url like 
+"localhost/index.html"
+
+There's a module called "pymysql" for Python3 which needs to be available.
+
+Frontend is index.html with supporting files howto.css and howto.js.
+
+The backend files are located in "cgi-bin" folder.  File "topics" is a pickled
+file created using module "shelve".
+
+Files in folder "js" are jQuery and jQuery user-interface libraries that are
+the publicly available and free and open ones.
+
+

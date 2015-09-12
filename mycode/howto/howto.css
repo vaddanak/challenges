@@ -1,0 +1,54 @@
+
+.no_underline {
+	text-decoration: none;
+	
+}
+
+ul#topics a:hover {
+	color: green;
+	font-weight: bold;
+}
+
+.activeLI > a[href] {
+	text-decoration: underline;
+	color: blue;
+	font-weight: bold;
+	
+}
+
+.activeLI, .active_element {	
+	color: red;
+	font-weight: bold;
+}
+
+div#issues.body_part {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 2em;
+	left: 0;	
+}
+
+div#issues_titles {	
+	height: 100%;
+	width: 28%;
+	overflow-y: scroll;
+}
+
+div#div_iframe.body_part {
+	position: absolute;
+	left: 30%;
+	width: 69%;
+}
+
+#content_hints {
+	word-wrap: break-word;
+}
+
+#issues_titles div span, #issues_titles div label {
+	cursor: pointer;
+}
+
+
+
+

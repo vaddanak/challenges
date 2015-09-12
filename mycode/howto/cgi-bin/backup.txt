@@ -1,0 +1,257 @@
+Connect to bitbucket
+
+url for ssh: git@bitbucket.org:vaddanak/bitbucket
+url for https:  https://bitbucket.org/vaddanak/bitbucket
+
+git clone git@bitbucket.org/vaddanak/bitbucket or
+git clone https://bitbucket.org/vaddanak/bitbucket
+git status [-s]
+git pull [ssh] [master]
+git log [-2] [ssh/master]
+git branch
+git checkout [branch]
+git push -u ssh master
+
+========================================
+Connect to GitHub
+
+url for ssh:  git@github.com:vaddanak/challenges (not need username and password)
+url for https:  https://github.com/vaddanak/challenges (need username and password)
+
+
+========================================
+Python -- ImportError: No module named pymysql
+
+"vad@vad-ThinkPad-Edge-E530:~/challenges/mycode$ python test.py
+Traceback (most recent call last):
+  File "test.py", line 15, in <module>
+    import pymysql;
+ImportError: No module named pymysql"
+
+Solution was to copy pymysql folder into /usr/local/lib/python2.7/dist-packages/
+
+========================================
+Git rebase
+
+git rebase ssh/solo incorporate changes in branch solo in base of
+branch master and branch master uncommon changes are on top or in front;
+master still points to its own latest change, which sits on top or in front.
+
+"vad@vad-MD2614u:~/challenges$ git status
+On branch master
+Your branch and 'ssh/master' have diverged,
+and have 1 and 2 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+nothing to commit, working directory clean
+
+vad@vad-MD2614u:~/challenges$ git pull
+First, rewinding head to replay your work on top of it...
+Applying: edit test.py
+Using index info to reconstruct a base tree...
+M	mycode/test.py
+:29: trailing whitespace.
+		
+warning: 1 line adds whitespace errors.
+Falling back to patching base and 3-way merge...
+Auto-merging mycode/test.py
+CONFLICT (content): Merge conflict in mycode/test.py
+Failed to merge in the changes.
+Patch failed at 0001 edit test.py
+The copy of the patch that failed is found in:
+   /home/vad/challenges/.git/rebase-apply/patch
+
+When you have resolved this problem, run "git rebase --continue".
+If you prefer to skip this patch, run "git rebase --skip" instead.
+To check out the original branch and stop rebasing, run "git rebase --abort"."
+
+I did "git diff" to view the conflict and resolved the conflict.
+
+"vad@vad-MD2614u:~/challenges$ git status
+rebase in progress; onto 5c491f8
+You are currently rebasing branch 'master' on '5c491f8'.
+  (fix conflicts and then run "git rebase --continue")
+  (use "git rebase --skip" to skip this patch)
+  (use "git rebase --abort" to check out the original branch)
+
+Unmerged paths:
+  (use "git reset HEAD <file>..." to unstage)
+  (use "git add ..." to mark resolution)
+
+	both modified:      mycode/test.py
+
+
+It took 4.25 seconds to enumerate untracked files. 'status -uno'
+may speed it up, but you have to be careful not to forget to add
+new files yourself (see 'git help status').
+no changes added to commit (use "git add" and/or "git commit -a")
+
+vad@vad-MD2614u:~/challenges$ git rebase --continue
+mycode/test.py: needs merge
+You must edit all merge conflicts and then
+mark them as resolved using git add
+
+vad@vad-MD2614u:~/challenges$ git add .
+
+vad@vad-MD2614u:~/challenges$ git status
+rebase in progress; onto 5c491f8
+You are currently rebasing branch 'master' on '5c491f8'.
+  (all conflicts fixed: run "git rebase --continue")
+
+Changes to be committed:
+  (use "git reset HEAD ..." to unstage)
+
+	modified:   mycode/test.py
+
+vad@vad-MD2614u:~/challenges$ git rebase --continue
+Applying: edit test.py
+
+vad@vad-MD2614u:~/challenges$ git status
+On branch master
+Your branch is ahead of 'ssh/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working directory clean
+
+vad@vad-MD2614u:~/challenges$ git push -u ssh master
+Counting objects: 12, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 737 bytes | 0 bytes/s, done.
+Total 4 (delta 3), reused 0 (delta 0)
+To git@github.com:vaddanak/challenges
+   5c491f8..cbe262f  master -> master
+Branch master set up to track remote branch master from ssh by rebasing."
+
+SUCCESS!
+
+========================================
+Git merge
+
+git merge ssh/solo put branch solo changes on top or in front of
+branch master uncommon branches; master now points to latest solo change.
+
+git branch -a --> to view local and remote branches; known by "git pull"
+git log ssh/solo -3 --> to view latest 3 commits on remote "solo" branch
+git config pull.default simple to same branch track local-to-remote-repo
+
+Main master branch wants to get changes present in solo branch.
+
+"vad@vad-MD2614u:~/challenges$ git merge ssh/solo
+Merge made by the 'recursive' strategy. ...and other junk...
+
+vad@vad-MD2614u:~/challenges$ git status
+On branch master
+Your branch is ahead of 'ssh/master' by 6 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working directory clean"
+
+Local repository is up-to-date, but remote repository at ssh/master is behind.
+
+"vad@vad-MD2614u:~/challenges$ git push -u ssh master
+Counting objects: 10, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 389 bytes | 0 bytes/s, done.
+Total 3 (delta 2), reused 0 (delta 0)
+To git@github.com:vaddanak/challenges
+   cbe262f..7a29058  master -> master
+Branch master set up to track remote branch master from ssh by rebasing."
+
+========================================
+Git add
+
+vad@vad-ThinkPad-Edge-E530:~/challenges$ git add .
+warning: You ran 'git add' with neither '-A (--all)' or '--ignore-removal',
+whose behaviour will change in Git 2.0 with respect to paths you removed.
+Paths like 'mycode/practice/atoms.log' that are
+removed from your working tree are ignored with this version of Git.
+
+* 'git add --ignore-removal <pathspec>', which is the current default,
+  ignores paths you removed from your working tree.
+
+* 'git add --all <pathspec>' will let you also record the removals.
+
+Run 'git status' to check the paths you removed from your working tree.
+
+vad@vad-ThinkPad-Edge-E530:~/challenges$ git add -a .
+error: unknown switch `a'
+usage: git add [options] [--] <pathspec>...
+
+    -n, --dry-run         dry run
+    -v, --verbose         be verbose
+
+    -i, --interactive     interactive picking
+    -p, --patch           select hunks interactively
+    -e, --edit            edit current diff and apply
+    -f, --force           allow adding otherwise ignored files
+    -u, --update          update tracked files
+    -N, --intent-to-add   record only the fact that the path will be added later
+    -A, --all             add changes from all tracked and untracked files
+    --ignore-removal      ignore paths removed in the working tree (same as --no-all)
+    --refresh             don't add, only refresh the index
+    --ignore-errors       just skip files which cannot be added because of errors
+    --ignore-missing      check if - even missing - files are ignored in dry run
+
+vad@vad-ThinkPad-Edge-E530:~/challenges$ git add --all .
+
+========================================
+Enable Python3 features in Python2
+
+from __future__ import print_function to use 
+	print(..., sep=' ', end='\n'...)
+from __future__ import division all division between int values result in
+	a float, ie 10/2 = 5.0; floor division // always return int, rounded down.
+from __future__ import absolute_import to enable full Python 3.X package
+	import semantics.	
+from __future__ import unicode_literals you can use this idiom to make all
+	string literals in a module unicode strings; same as add a u prefix to the
+	text literal; makes string literals unicode.  Mark all binary literals with
+	a b prefix, use a u prefix or __future__ import statement for text literals
+	
+Once you have fully translated your code to be compatible with Python 3, you will
+want to make sure your code doesnâ€™t regress and stop working under Python 3. This
+is especially true if you have a dependency which is blocking you from actually
+running under Python 3 at the moment.
+	
+To help with staying compatible, any new modules you create should have at least
+the following block of code at the top of it:
+
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals	
+	
+You should also use io.open() for opening files instead of the built-in open()
+function as the io module is consistent from Python 2 to 3 while the built-in
+open() function is not (in Python 3 itâ€™s actually io.open()).	
+
+You can also run Python 2 with the -3 flag to be warned about various compatibility
+issues your code triggers during execution. If you turn warnings into errors with
+-Werror then you can make sure that you donâ€™t accidentally miss a warning.
+
+If you only need to support Python 2.6 or later there is also from __future__
+import unicode_literals. This will turn all string literals in the file into
+Unicode literals:
+
+>>> from __future__ import unicode_literals
+>>> type("A standard string literal")
+<type 'unicode'>
+>>> type(b"A binary literal")
+<type 'str'>
+
+The binary data type is called str and the text type is called unicode
+under Python 2, while under Python 3 they are called bytes and str.
+
+>>> from __future__ import unicode_literals
+>>> import sys
+>>> if sys.version_info < (3,):
+...     text_type = unicode
+...     binary_type = str
+... else:
+...     text_type = str
+...     binary_type = bytes
+>>> isinstance('U\xf1ic\xf6de', text_type)
+True
+
