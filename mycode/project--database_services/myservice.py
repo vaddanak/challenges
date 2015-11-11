@@ -221,9 +221,20 @@ class Service:
 		except (Exception,) as err: #unknown error
 			print('IN __init__: ', sys.exc_info()) # -> (type, value, traceback)
 			raise
-			
+	
+	
+	def sort_rowdata_reversed(self, rowdata_dict_returned_from_fetch, 
+		columns_order_to_sort):
+		return self.__sort_rowdata_both(rowdata_dict_returned_from_fetch, 
+			columns_order_to_sort, do_reverse=True)
+	
 	def sort_rowdata(self, rowdata_dict_returned_from_fetch, 
 		columns_order_to_sort):
+		return self.__sort_rowdata_both(rowdata_dict_returned_from_fetch, 
+			columns_order_to_sort, do_reverse=False)
+			
+	def __sort_rowdata_both(self, rowdata_dict_returned_from_fetch, 
+		columns_order_to_sort, do_reverse=False):
 		"""
 		Sort tuple of dict-type based on user-specified list of columns.
 		
@@ -246,7 +257,8 @@ class Service:
 			
 			#rowdata.sort(key=sorting_item)
 			rowdata.sort(key=lambda item_dict: tuple((item_dict[column] 
-				for column in columns_order_to_sort if column in item_dict)) )
+				for column in columns_order_to_sort if column in item_dict)),
+				reverse = do_reverse )
 		
 		except:
 			print('IN sort_rowdata: ', sys.exc_info() )
@@ -364,15 +376,23 @@ class Service:
 		return tuple(data)
 		
 	def fetch_rowdata_criteria_and(self, search_criteria_dict=None):
-		return self.fetch_rowdata_criteria_and_or(search_criteria_dict,
+		return self.__fetch_rowdata_criteria_and_or(search_criteria_dict,
 			is_and=True, is_or=False)
 		
 	def fetch_rowdata_criteria_or(self, search_criteria_dict=None):
-		return self.fetch_rowdata_criteria_and_or(search_criteria_dict,
+		return self.__fetch_rowdata_criteria_and_or(search_criteria_dict,
 			is_and=False, is_or=True)
+			
+	def fetch_rowdata_criteria_and_not(self, search_criteria_dict=None):
+		return self.__fetch_rowdata_criteria_and_or(search_criteria_dict,
+			is_and=True, is_or=False, is_not=True)
 		
-	def fetch_rowdata_criteria_and_or(self, search_criteria_dict=None, 
-		is_and=True, is_or=False):
+	def fetch_rowdata_criteria_or_not(self, search_criteria_dict=None):
+		return self.__fetch_rowdata_criteria_and_or(search_criteria_dict,
+			is_and=False, is_or=True, is_not=True)		
+		
+	def __fetch_rowdata_criteria_and_or(self, search_criteria_dict=None, 
+		is_and=True, is_or=False, is_not=False):
 		"""
 		Fetch all row data that matches the search criteria.
 		
@@ -387,7 +407,7 @@ class Service:
 		expression using the raw string, like this r'search critera'
 		
 		"""
-		data = self.fetch_rowdata_all() # tuple of dict
+		data = self.fetch_rowdata_all() # tuple of dict-type
 		if not search_criteria_dict: return tuple(data)
 		result = []
 		
@@ -423,7 +443,12 @@ class Service:
 			print('IN fetch_rowdata_criteria_and_or:', sys.exc_info() )
 			raise
 			
+		#
+		if is_not:
+			result = [item for item in data if item not in result]
+			
 		return tuple(result)
+		
 		
 	def remove_database(self):
 		"""
