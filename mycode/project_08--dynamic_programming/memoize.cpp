@@ -1,6 +1,6 @@
 /*
 FILE:  memoize.cpp
-TEAM:  	Micah Parcher, Darshankumar Patel, Vaddanak Seng
+Author:  Vaddanak Seng
 PURPOSE:  Project 2 uses dynamic programming to determine number of ways to
 		arrange balls in some number of baskets.
 */
