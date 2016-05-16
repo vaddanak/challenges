@@ -1,0 +1,10 @@
+team,location,name,leag
+BEG,Begin,fuuls,N
+WA1,Washington,Bullets,N
+HMV,Houston,Mavericks,A
+WAC,Washington,Caps,A
+KCK,Kansas,Kings,N
+HOU,Houston,Rockets,N
+WAS,Washington,Wizards,N
+KEN,Kentucky,Colonels,A
+END,End,fulljusi,A

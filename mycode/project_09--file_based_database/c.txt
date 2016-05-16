@@ -1,0 +1,10 @@
+coachid,year,yr_order,firstname,lastname,season_win,season_loss,playoff_win,playoff_loss,team
+BEGIN01,    1993, 1,  John,  Proba1,   32, 50, 2, 0,  HOU
+JONESKC01,  1992, 1,  KC,    Jones,    48, 34, 3, 4,  WAC
+MOTTADI01,  1991, 1,  Dick,  Motta,    48, 34, 4, 5,  WAS
+YOUNGDR01,  1993, 1,  Draff, Young,     0,  3, 3, 0,  KCK
+UNSELWE01,  1994, 1,  Wes,   Unseld,   39, 43, 8, 0,  WA1
+UNSELWE01,  1993, 1,  Wes,   Unseld,   30, 25, 7, 3,  WA1
+YOUNGDR01,  1992, 1,  Draff, Young,    36, 46, 0, 0,  KCK
+EGANJO01,   1993, 1,  John,  Egan,     32, 50, 0, 0,  HOU
+END01,      1993, 1,  John,  end end,  32, 50, 7, 0,  HOU

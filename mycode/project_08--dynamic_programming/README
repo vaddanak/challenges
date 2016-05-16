@@ -1,0 +1,17 @@
+
+The content of the project 2 directory includes the following files:
+memoize.cpp
+input.txt
+output.txt
+README
+report.pdf
+
+
+Use the following command line to compile:
+g++ memoize.cpp -o memoize
+
+
+Use the following command line to run the program:
+./memoize
+
+
