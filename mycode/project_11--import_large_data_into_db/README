@@ -1,0 +1,130 @@
+
+
+The program in 'util2.py' is designed to insert data from the FDA data files
+into a MySQL database system.  The program is dependent on the file
+'parameters' which contains configuration information.
+
+The important functions to facilitate this goal are located in util2.py:
+check_for_duplicates()
+check_table_column_compatibility()
+compose_create_sql()
+execute_create_table_sql(auto_destroy=True)
+compose_insert_sql(limit=10)
+execute_insert_row_sql(auto_proceed=True)
+report_insert_result()
+
+Brief descriptions for each functions will follow.
+
+util2.check_for_duplicates()
+	This is used to check for duplicate rows in the database.  Section 7 in
+parameters file is used to specify table and columns for which to check
+duplicate row data.
+	For example, the following entry in section 7:
+therapy		primaryid, dsg_drug_seq
+This entry tells the program that to check row data in table 'therapy' and
+specifically check if rows have duplicate (primaryid, dsg_drug_seq) data.
+
+util2.check_table_column_compatibility()
+	Sections 2, 3, and 5 in parameters are important.  The program expects
+"standard" tables and columns.  "Standard" refers to columns in section 3 
+since they are used in the actual MySQL tables and columns.
+This function checks that table names and 
+column names are compatible for the current database configuration.  If
+unexpected tables and columns arise, the program can still work by adding
+new entries in the parameters file which will allow the program to adapt to 
+the new findings.
+
+util2.compose_create_sql()
+	Sections 3 and 5 are important.  This function composes the CREATE DATABASE
+and CREATE TABLE sql statements and save to files located in directory
+istudy_large_files/SQL_FILIES.  
+
+util2.execute_create_table_sql(auto_destroy=True)
+	This function opens a connection to the database and executes each line
+in the sql file created from compose_create_sql().  If the database already
+exist in the database system, it will be completely overwritten and all
+previous data will be lost.  auto_destroy=True will do this without 
+confirming with you first.  If you prefer to only add data to the current
+database without recreating and thus destroying the current database, 
+you might comment this method out in the file insert_all_rowdata.py.
+
+util2.compose_insert_sql(limit=10)
+	Sections 3, 4, and 5 are important for this function.  This function
+reads the FDA data file and creates INSERT sql statements for each row and
+writes the sql statements to a file.  One sql file per FDA data file.
+	limit=10 means only the first 10 row data from each file are read.  Change
+to limit=None to read ALL row data.
+
+util2.execute_insert_row_sql(auto_proceed=True)
+	This function will execute each line in the sql file created from
+compose_insert_sql().  auto_proceed=True will overwrite all rows in database
+with same (num) column data.
+
+util2.report_insert_result()
+	This function generates a report that will be helpful to learn if any
+warnings or errors were generated.
+
+
+------------------
+
+Before actually inserting data into the database, certain functions must be
+executed in certain order.  Extracted FDA data file are expected to be 
+placed in DATA_FILES directory.  Created sql files are located in SQL_FILES.
+
+To run the main program, enter commands:
+
+python3 insert_all_rowdata2.py
+
+This program executes the following functions in the sequence as shown:
+util.check_large_files_dir()
+util.remove_shelve_files() 
+util.remove_sql_files()
+util.compose_create_sql()
+util.execute_create_table_sql(auto_destroy=True)	
+util.compose_insert_sql(limit=None)
+util.execute_insert_row_sql(auto_proceed=True)					
+util.report_insert_result()
+
+So, all old data in the database with the same name will be overwritten.
+To keep the old data and add new data, then comment out the functions
+util.remove_shelve_files(), util.remove_sql_files(),
+util.compose_create_sql(), and util.execute_create_table_sql().
+
+Running this program will take a long time, probably more than 3 hours.
+If you want to run a shorter version (for testing purposes), 
+ie using the first 10 lines from each
+data file, then enter the commands:
+
+python3 test_insert2.py
+
+
+
+------------------
+How to add generic name of drug to database?
+1) Change prompt to directory 'istudy'
+2) In parameters file and section 1, find line for 'generic_names' and change its
+	value to correct filename (relative to directory 'istudy').
+3) Make sure first line of this file has column name 'drugname' first, 
+	followed by 1 or more tabs, and then followed by column name 'generic_name'.
+	Each line in file should have this format, that is, key field followed by
+	1 or more tabs followed by value field.
+4) Type in following command to update database:	python3 generic_drug.py
+
+An example file with the expected format is 'generic_list' in 'istudy' 
+directory.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

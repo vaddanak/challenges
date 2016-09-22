@@ -1,0 +1,284 @@
+# This is an example of a comment line.
+
+# Parameter key-value pairs are single tab delimited.
+
+# Each section separated by section header similar to [SOME_SECTION] 
+
+[SECTION1]
+# General section
+# directory for data files
+data_dir	ASCII_DATA_FILES
+base_data_dir	DATA_FILES
+sql_dir			SQL_FILES
+
+# Directory for folding huge files >=100MB to avoid github error
+large_files		../istudy_large_files
+sql				../istudy_large_files/SQL_FILES
+shelve			../istudy_large_files/SHELVE
+
+# Specify location of file containing 'drugname' to 'generic_name' mapping
+generic_names	generic_list
+
+# Database name
+# WARNING! Don't use this entry! Use the database entry in section 10 instead.
+database_name	xxxxx
+
+[SECTION2]
+# Table prefix used in first part of ascii data filename
+# If multiple values, they are ', ' separated (comma followed by a single space).
+reaction	reac
+outcome		outc
+report_sources	rpsr
+demographic		demo
+drug		drug
+therapy		ther, xxx
+indication	indi
+
+
+[SECTION3]
+# Table_name-column_names pair, separated by single tab.  
+# Column names are ', ' separated (comma followed by a single space).
+# These table names and corresponding column names are used in MySQL.
+# ALL column names in this section MUST also exist SECTION 5.
+# NOTE: Columns num and generic_name were added by non-FDA programmer.
+
+demographic		num, primaryid, caseid, caseversion, i_f_code, event_dt, mfr_dt, init_fda_dt, fda_dt, rept_cod, auth_num, mfr_num, mfr_sndr, lit_ref, age, age_cod, age_grp, sex, e_sub, wt, wt_cod, rept_dt, to_mfr, occp_cod, reporter_country, occr_country
+
+drug	num, primaryid, caseid, drug_seq, role_cod, drugname, prod_ai, val_vbm, route, dose_vbm, cum_dose_chr, cum_dose_unit, dechal, rechal, lot_num, exp_dt, nda_num, dose_amt, dose_unit, dose_form, dose_freq, generic_name
+
+reaction	num, primaryid, caseid, pt, drug_rec_act
+
+outcome		num, primaryid, caseid, outc_cod
+
+report_sources		num, primaryid, caseid, rpsr_cod
+
+therapy		num, primaryid, caseid, dsg_drug_seq, start_dt, end_dt, dur, dur_cod
+
+indication	num, primaryid, caseid, indi_drug_seq, indi_pt
+
+[SECTION4]
+# Location of ascii data files
+# Directories containing FDA data for specific year and quarter
+# 14 directories.
+
+# Clean.
+faers_ascii_2012q4		base_data_dir/faers_ascii_2012q4/ascii/
+
+# Clean.
+faers_ascii_2013q1		base_data_dir/faers_ascii_2013q1/asci/
+# Clean.
+faers_ascii_2013q2		base_data_dir/faers_ascii_2013q2/asii/
+# Clean.
+faers_ascii_2013q3		base_data_dir/faers_ascii_2013q3/ASCII/
+# Clean.
+faers_ascii_2013q4		base_data_dir/faers_ascii_2013q4/ascii/
+
+# Clean.
+faers_ascii_2014q1		base_data_dir/faers_ascii_2014q1/ascii/
+# Clean.
+faers_ascii_2014q2		base_data_dir/faers_ascii_2014q2/ascii/
+# Clean.
+faers_ascii_2014q3		base_data_dir/faers_ascii_2014q3/ascii/
+# Clean.
+faers_ascii_2014q4		base_data_dir/faers_ascii_2014q4/ascii/
+
+# Clean.
+faers_ascii_2015q1		base_data_dir/faers_ascii_2015q1/ascii/
+# Clean.
+faers_ascii_2015q2		base_data_dir/faers_ascii_2015q2/ascii/
+
+# Drug table split into 2 because github fail to transfer file >= 100MB
+# Clean.
+faers_ascii_2015q3		base_data_dir/faers_ascii_2015q3/ascii/
+# Clean.
+faers_ascii_2015q3b		base_data_dir/faers_ascii_2015q3b/ascii/
+
+# Clean.
+faers_ascii_2015q4		base_data_dir/faers_ascii_2015q4/ascii/
+
+
+[SECTION5]
+# MySQL column definition
+# Column name is mapped to MySQL column definition.  Table creation will use
+# these column definition.
+
+# Reasons to change age def:  
+# Warning: Data truncated for column 'age' at row 1
+# Warning (Code 1366): Incorrect decimal value: 'U' for column 'age
+# Warning (Code 1366): Incorrect decimal value: 'FEW' for column 'age'
+#age			DECIMAL(12,2)
+#age			DECIMAL(12,5)
+age			VARCHAR(80)
+
+age_cod		VARCHAR(7)
+age_grp		VARCHAR(15)
+auth_num	VARCHAR(500)
+caseid		BIGINT UNSIGNED
+caseversion	INT
+cum_dose_unit	VARCHAR(50)
+cum_dose_chr	VARCHAR(15)
+dechal		VARCHAR(20)
+dose_amt	VARCHAR(15)
+dose_form	VARCHAR(50)
+dose_freq	VARCHAR(50)
+dose_unit	VARCHAR(50)
+dose_vbm	VARCHAR(300)
+drug_rec_act	VARCHAR(500)
+drug_seq	INT
+drugname	VARCHAR(500)
+generic_name	VARCHAR(500)
+prod_ai		VARCHAR(500)
+dsg_drug_seq	INT
+
+# Warning (Code 1265): Data truncated for column 'dur'
+# Warning (Code 1366): Incorrect integer value: 'ZERO' for column 'dur'
+#dur		INT
+dur		VARCHAR(80)
+
+dur_cod		VARCHAR(500)
+e_sub	VARCHAR(1)
+end_dt	INT
+event_dt	INT
+
+# Reason to change:  
+# Warning (Code 1265): Data truncated for column 'exp_dt' at row 1
+#exp_dt	INT
+#exp_dt	VARCHAR(80)
+exp_dt	VARCHAR(500)
+
+
+fda_dt	INT
+num		BIGINT UNSIGNED NOT NULL AUTO_INCREMENT
+#num		BIGINT UNSIGNED NOT NULL
+sex		VARCHAR(5)
+i_f_code	VARCHAR(1)
+indi_drug_seq	INT
+indi_pt		VARCHAR(1000)
+init_fda_dt	INT
+lit_ref		VARCHAR(1000)
+lot_num		VARCHAR(1000)
+mfr_dt		INT
+mfr_num		VARCHAR(500)
+mfr_sndr	VARCHAR(300)
+
+# Warning (Code 1265): Data truncated for column 'nda_num'
+#nda_num		INT
+nda_num		VARCHAR(80)
+
+
+occp_cod	VARCHAR(300)
+occr_country	VARCHAR(2)
+outc_cod	VARCHAR(4000)
+#primaryid	BIGINT UNSIGNED NOT NULL PRIMARY KEY
+primaryid	BIGINT UNSIGNED NOT NULL
+pt		VARCHAR(500)
+rechal	VARCHAR(20)
+reporter_country	VARCHAR(500)
+rept_cod	VARCHAR(9)
+rept_dt		INT
+role_cod	VARCHAR(22)
+
+# Warning (Code 1265): Data truncated for column 'route'
+#route		VARCHAR(25)
+route		VARCHAR(500)
+
+rpsr_cod	VARCHAR(32)
+start_dt	INT
+to_mfr		VARCHAR(100)
+val_vbm		INT
+
+# Warning (Code 1366): Incorrect decimal value: 'U' for column 'wt'
+# Warning (Code 1366): Incorrect decimal value: 'UNK' for column 'wt'
+# Note (Code 1265): Data truncated for column 'wt'
+# Warning (Code 1366): Incorrect decimal value: 'F' for column 'wt'
+# Warning (Code 1366): Incorrect decimal value: '`' for column 'wt'
+# Warning (Code 1366): Incorrect decimal value: 'M' for column 'wt'
+# Warning (Code 1366): Incorrect decimal value: 'S' for column 'wt'
+# Warning (Code 1366): Incorrect decimal value: 'YR' for column 'wt'
+# Warning (Code 1366): Incorrect decimal value: '/2.3' for column 'wt'
+#wt			DECIMAL(14,5)
+wt			VARCHAR(80)
+
+wt_cod		VARCHAR(20)
+
+[SECTION6]
+# Map alias column names to preferred column name, ie the one used in MySQL
+# Key-value is tab separated.
+
+gndr_cod	sex
+lot_nbr		lot_num
+
+#primaryid string in text file contains unicode '\ufeffprimaryid'
+﻿primaryid		primaryid
+outc_code		outc_cod
+
+[SECTION7]
+# Check for duplicate based on specified columns in a table
+# Note that fields in value are delimited by ', ', ie comma followed by space
+
+#reaction	primaryid
+outcome		primaryid
+#report_sources	primaryid
+#demographic		primaryid
+#drug		primaryid, drug_seq
+therapy		primaryid, dsg_drug_seq
+#indication	primaryid, indi_drug_seq
+
+reaction	caseid, xxx, pt
+
+
+[SECTION8]
+# Specify fda year and quarter dir and tables to be removed from database
+# * means all tables, ie
+# * == demographic, drug, reaction, outcome, report_sources, therapy, indication
+# Note that fields in value are delimited by ', ', ie comma followed by space
+faers_ascii_2012q4		*
+faers_ascii_2013q1		*
+faers_ascii_2015q4		*
+
+[SECTION9]
+# Specify fda year and quarter dir and tables to be added to database
+# * means all tables, ie
+# * == demographic, drug, reaction, outcome, report_sources, therapy, indication
+# Note that fields in value are delimited by ', ', ie comma followed by space
+faers_ascii_2012q4		*
+faers_ascii_2013q1		*
+faers_ascii_2015q4		*
+
+[SECTION10]
+# Database connection settings
+host		localhost
+user		root
+passwd		
+db			faers
+
+
+[END]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
